@@ -1,0 +1,269 @@
+
+package com.bootx.audit;
+
+import com.bootx.util.BeanUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.util.Assert;
+
+import java.beans.PropertyDescriptor;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * Audit - 审计元数据
+ *
+ * @author blackboy
+ * @version 1.0
+ */
+public final class AuditingMetadata {
+
+	/**
+	 * 审计元数据缓存
+	 */
+	private static final Map<Class<?>, AuditingMetadata> AUDITING_METADATA_CACHE = new ConcurrentHashMap<>();
+
+	/**
+	 * "创建者"属性
+	 */
+	private final List<Property> createdByProperties;
+
+	/**
+	 * "创建日期"属性
+	 */
+	private final List<Property> createdDateProperties;
+
+	/**
+	 * "最后修改者"属性
+	 */
+	private final List<Property> lastModifiedByProperties;
+
+	/**
+	 * "最后修改日期"属性
+	 */
+	private final List<Property> lastModifiedDateProperties;
+
+	/**
+	 * 构造方法
+	 *
+	 * @param type
+	 *            类
+	 */
+	private AuditingMetadata(Class<?> type) {
+		Assert.notNull(type,"");
+
+		this.createdByProperties = findProperties(type, CreatedBy.class);
+		this.createdDateProperties = findProperties(type, CreatedDate.class);
+		this.lastModifiedByProperties = findProperties(type, LastModifiedBy.class);
+		this.lastModifiedDateProperties = findProperties(type, LastModifiedDate.class);
+	}
+
+	/**
+	 * 获取"创建者"属性
+	 *
+	 * @return "创建者"属性
+	 */
+	public List<Property> getCreatedByProperties() {
+		return createdByProperties;
+	}
+
+	/**
+	 * 获取"创建日期"属性
+	 *
+	 * @return "创建日期"属性
+	 */
+	public List<Property> getCreatedDateProperties() {
+		return createdDateProperties;
+	}
+
+	/**
+	 * 获取"最后修改者"属性
+	 *
+	 * @return "最后修改者"属性
+	 */
+	public List<Property> getLastModifiedByProperties() {
+		return lastModifiedByProperties;
+	}
+
+	/**
+	 * 获取"最后修改日期"属性
+	 *
+	 * @return "最后修改日期"属性
+	 */
+	public List<Property> getLastModifiedDateProperties() {
+		return lastModifiedDateProperties;
+	}
+
+	/**
+	 * 获取审计元数据
+	 *
+	 * @param type
+	 *            类
+	 * @return 审计元数据
+	 */
+	public static AuditingMetadata getAuditingMetadata(Class<?> type) {
+		Assert.notNull(type,"");
+
+		AuditingMetadata auditingMetadata = AUDITING_METADATA_CACHE.get(type);
+		if (auditingMetadata == null) {
+			auditingMetadata = new AuditingMetadata(type);
+			AUDITING_METADATA_CACHE.put(type, auditingMetadata);
+		}
+		return auditingMetadata;
+	}
+
+	/**
+	 * 判断是否为审计元数据
+	 *
+	 * @return 是否为审计元数据
+	 */
+	public boolean isAuditable() {
+		return CollectionUtils.isNotEmpty(createdByProperties) || CollectionUtils.isNotEmpty(createdDateProperties) || CollectionUtils.isNotEmpty(lastModifiedByProperties) || CollectionUtils.isNotEmpty(lastModifiedDateProperties);
+	}
+
+	/**
+	 * 查找属性
+	 *
+	 * @param type
+	 *            类
+	 * @param annotationType
+	 *            Annotation类
+	 * @return 属性
+	 */
+	private List<Property> findProperties(Class<?> type, Class<? extends Annotation> annotationType) {
+		Assert.notNull(type,"");
+		Assert.notNull(annotationType,"");
+
+		Map<String, PropertyDescriptor> propertyDescriptorMap = new HashMap<>();
+		Map<String, PropertyDescriptor> remainingPropertyDescriptorMap = new HashMap<>();
+
+		for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(type, annotationType)) {
+			propertyDescriptorMap.put(propertyDescriptor.getName(), propertyDescriptor);
+		}
+		remainingPropertyDescriptorMap.putAll(propertyDescriptorMap);
+
+		List<Property> result = new ArrayList<>();
+		for (Field field : BeanUtils.findFields(type, annotationType)) {
+			String fieldName = field.getName();
+			result.add(new Property(field, propertyDescriptorMap.get(fieldName)));
+			remainingPropertyDescriptorMap.remove(fieldName);
+		}
+		for (PropertyDescriptor propertyDescriptor : remainingPropertyDescriptorMap.values()) {
+			result.add(new Property(null, propertyDescriptor));
+		}
+		return result;
+	}
+
+	/**
+	 * 属性
+	 *
+	 * @author blackboy
+	 * @version 1.0
+	 */
+	public static class Property {
+
+		/**
+		 * 名称
+		 */
+		private String name;
+
+		/**
+		 * 类型
+		 */
+		private Class<?> type;
+
+		/**
+		 * Field
+		 */
+		private Field field;
+
+		/**
+		 * PropertyDescriptor
+		 */
+		private PropertyDescriptor propertyDescriptor;
+
+		/**
+		 * 构造方法
+		 *
+		 * @param field
+		 *            Field
+		 * @param propertyDescriptor
+		 *            PropertyDescriptor
+		 */
+		public Property(Field field, PropertyDescriptor propertyDescriptor) {
+			Assert.isTrue(field != null || propertyDescriptor != null,"");
+
+			this.name = field != null ? field.getName() : propertyDescriptor.getName();
+			this.type = field != null ? field.getType() : propertyDescriptor.getPropertyType();
+			this.field = field;
+			this.propertyDescriptor = propertyDescriptor;
+		}
+
+		/**
+		 * 获取名称
+		 *
+		 * @return 名称
+		 */
+		public String getName() {
+			return name;
+		}
+
+		/**
+		 * 获取类型
+		 *
+		 * @return 类型
+		 */
+		public Class<?> getType() {
+			return type;
+		}
+
+		/**
+		 * 获取Field
+		 *
+		 * @return Field
+		 */
+		public Field getField() {
+			return field;
+		}
+
+		/**
+		 * 获取PropertyDescriptor
+		 *
+		 * @return PropertyDescriptor
+		 */
+		public PropertyDescriptor getPropertyDescriptor() {
+			return propertyDescriptor;
+		}
+
+		/**
+		 * 设置值
+		 *
+		 * @param target
+		 *            目标
+		 * @param value
+		 *            值
+		 */
+		public void setValue(Object target, Object value) {
+			Assert.notNull(target,"");
+
+			if (field != null) {
+				BeanUtils.setAccessible(field);
+				BeanUtils.setField(field, target, value);
+			} else if (propertyDescriptor != null) {
+				Method writeMethod = propertyDescriptor.getWriteMethod();
+				if (writeMethod != null) {
+					BeanUtils.setAccessible(writeMethod);
+					BeanUtils.invokeMethod(writeMethod, target, value);
+				}
+			}
+		}
+	}
+
+}

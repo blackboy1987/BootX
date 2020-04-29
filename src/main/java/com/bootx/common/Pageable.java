@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 分页信息
- *
+ * 
  * @author blackboy
  * @version 1.0
  */
@@ -81,7 +81,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 构造方法
-	 *
+	 * 
 	 * @param pageNumber
 	 *            页码
 	 * @param pageSize
@@ -98,7 +98,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取页码
-	 *
+	 * 
 	 * @return 页码
 	 */
 	public int getPageNumber() {
@@ -107,7 +107,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置页码
-	 *
+	 * 
 	 * @param pageNumber
 	 *            页码
 	 */
@@ -120,7 +120,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取每页记录数
-	 *
+	 * 
 	 * @return 每页记录数
 	 */
 	public int getPageSize() {
@@ -129,7 +129,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置每页记录数
-	 *
+	 * 
 	 * @param pageSize
 	 *            每页记录数
 	 */
@@ -142,7 +142,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取搜索属性
-	 *
+	 * 
 	 * @return 搜索属性
 	 */
 	public String getSearchProperty() {
@@ -151,7 +151,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置搜索属性
-	 *
+	 * 
 	 * @param searchProperty
 	 *            搜索属性
 	 */
@@ -161,7 +161,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取搜索值
-	 *
+	 * 
 	 * @return 搜索值
 	 */
 	public String getSearchValue() {
@@ -170,7 +170,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置搜索值
-	 *
+	 * 
 	 * @param searchValue
 	 *            搜索值
 	 */
@@ -180,7 +180,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取排序属性
-	 *
+	 * 
 	 * @return 排序属性
 	 */
 	public String getOrderProperty() {
@@ -189,7 +189,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置排序属性
-	 *
+	 * 
 	 * @param orderProperty
 	 *            排序属性
 	 */
@@ -199,7 +199,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取排序方向
-	 *
+	 * 
 	 * @return 排序方向
 	 */
 	public Order.Direction getOrderDirection() {
@@ -208,7 +208,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置排序方向
-	 *
+	 * 
 	 * @param orderDirection
 	 *            排序方向
 	 */
@@ -218,7 +218,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取筛选
-	 *
+	 * 
 	 * @return 筛选
 	 */
 	public List<Filter> getFilters() {
@@ -227,7 +227,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置筛选
-	 *
+	 * 
 	 * @param filters
 	 *            筛选
 	 */
@@ -237,7 +237,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 获取排序
-	 *
+	 * 
 	 * @return 排序
 	 */
 	public List<Order> getOrders() {
@@ -246,7 +246,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 设置排序
-	 *
+	 * 
 	 * @param orders
 	 *            排序
 	 */
@@ -256,7 +256,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 重写equals方法
-	 *
+	 * 
 	 * @param obj
 	 *            对象
 	 * @return 是否相等
@@ -268,7 +268,7 @@ public class Pageable implements Serializable {
 
 	/**
 	 * 重写hashCode方法
-	 *
+	 * 
 	 * @return HashCode
 	 */
 	@Override

@@ -1,9 +1,8 @@
 
 package com.bootx.common;
 
-import com.bootx.entity.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.bootx.entity.BaseEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -14,7 +13,7 @@ import java.util.List;
 
 /**
  * 分页
- *
+ * 
  * @author blackboy
  * @version 1.0
  */
@@ -25,19 +24,18 @@ public class Page<T> implements Serializable {
 	/**
 	 * 内容
 	 */
-	@JsonView({BaseEntity.ListView.class})
+	@JsonView({BaseEntity.BaseView.class, BaseEntity.IdView.class})
 	private final List<T> content = new ArrayList<>();
 
 	/**
 	 * 总记录数
 	 */
-	@JsonView({BaseEntity.ListView.class})
+	@JsonView({BaseEntity.BaseView.class, BaseEntity.IdView.class})
 	private final long total;
 
 	/**
 	 * 分页信息
 	 */
-	@JsonIgnore
 	private final Pageable pageable;
 
 	/**
@@ -50,7 +48,7 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 构造方法
-	 *
+	 * 
 	 * @param content
 	 *            内容
 	 * @param total
@@ -66,37 +64,36 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 获取页码
-	 *
+	 * 
 	 * @return 页码
 	 */
-	@JsonView({BaseEntity.ListView.class})
+	@JsonView({BaseEntity.BaseView.class, BaseEntity.IdView.class})
 	public int getPageNumber() {
 		return pageable.getPageNumber();
 	}
 
 	/**
 	 * 获取每页记录数
-	 *
+	 * 
 	 * @return 每页记录数
 	 */
-	@JsonView({BaseEntity.ListView.class})
+	@JsonView({BaseEntity.BaseView.class, BaseEntity.IdView.class})
 	public int getPageSize() {
 		return pageable.getPageSize();
 	}
 
 	/**
 	 * 获取搜索属性
-	 *
+	 * 
 	 * @return 搜索属性
 	 */
-	@JsonIgnore
 	public String getSearchProperty() {
 		return pageable.getSearchProperty();
 	}
 
 	/**
 	 * 获取搜索值
-	 *
+	 * 
 	 * @return 搜索值
 	 */
 	public String getSearchValue() {
@@ -105,27 +102,25 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 获取排序属性
-	 *
+	 * 
 	 * @return 排序属性
 	 */
-	@JsonIgnore
 	public String getOrderProperty() {
 		return pageable.getOrderProperty();
 	}
 
 	/**
 	 * 获取排序方向
-	 *
+	 * 
 	 * @return 排序方向
 	 */
-	@JsonIgnore
 	public Order.Direction getOrderDirection() {
 		return pageable.getOrderDirection();
 	}
 
 	/**
 	 * 获取排序
-	 *
+	 * 
 	 * @return 排序
 	 */
 	public List<Order> getOrders() {
@@ -134,27 +129,25 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 获取筛选
-	 *
+	 * 
 	 * @return 筛选
 	 */
-	@JsonIgnore
 	public List<Filter> getFilters() {
 		return pageable.getFilters();
 	}
 
 	/**
 	 * 获取总页数
-	 *
+	 * 
 	 * @return 总页数
 	 */
-	@JsonIgnore
 	public int getTotalPages() {
 		return (int) Math.ceil((double) getTotal() / (double) getPageSize());
 	}
 
 	/**
 	 * 获取内容
-	 *
+	 * 
 	 * @return 内容
 	 */
 	public List<T> getContent() {
@@ -163,7 +156,7 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 获取总记录数
-	 *
+	 * 
 	 * @return 总记录数
 	 */
 	public long getTotal() {
@@ -172,7 +165,7 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 获取分页信息
-	 *
+	 * 
 	 * @return 分页信息
 	 */
 	public Pageable getPageable() {
@@ -181,7 +174,7 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 获取空分页
-	 *
+	 * 
 	 * @param pageable
 	 *            分页信息
 	 * @return 空分页
@@ -192,7 +185,7 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 重写equals方法
-	 *
+	 * 
 	 * @param obj
 	 *            对象
 	 * @return 是否相等
@@ -204,7 +197,7 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 重写hashCode方法
-	 *
+	 * 
 	 * @return HashCode
 	 */
 	@Override

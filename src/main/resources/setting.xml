@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<setting> 
+	<settingConfig name="siteName" value="SHOP++商城"/>
+	<settingConfig name="siteDescription" value="我是网站描述" />
+	<settingConfig name="siteUrl" value="http://localhost:8880/mall"/>  
+	<settingConfig name="logo" value="/mall/upload/image/logo.png"/>  
+	<settingConfig name="hotSearch" value="苹果,三星,索尼,华为,魅族,佳能,华硕,美的,格力"/>  
+	<settingConfig name="address" value="湖南长沙经济技术开发区"/>  
+	<settingConfig name="phone" value="800-8888888"/>  
+	<settingConfig name="zipCode" value="400000"/>  
+	<settingConfig name="email" value="service@shopxx.net"/>  
+	<settingConfig name="certtext" value="湘ICP备10000000号"/>  
+	<settingConfig name="largeProductImageWidth" value="700"/>  
+	<settingConfig name="largeProductImageHeight" value="700"/>  
+	<settingConfig name="mediumProductImageWidth" value="300"/>  
+	<settingConfig name="mediumProductImageHeight" value="300"/>  
+	<settingConfig name="thumbnailProductImageWidth" value="170"/>  
+	<settingConfig name="thumbnailProductImageHeight" value="170"/>  
+	<settingConfig name="defaultLargeProductImage" value="/mall/upload/image/default_large.jpg"/>  
+	<settingConfig name="defaultMediumProductImage" value="/mall/upload/image/default_medium.jpg"/>  
+	<settingConfig name="defaultThumbnailProductImage" value="/mall/upload/image/default_thumbnail.jpg"/>  
+	<settingConfig name="defaultStoreLogo" value="/mall/upload/image/default_store_logo.jpg"/>  
+	<settingConfig name="watermarkAlpha" value="50"/>  
+	<settingConfig name="watermarkImage" value="/upload/image/watermark.png"/>  
+	<settingConfig name="watermarkPosition" value="no"/>  
+	<settingConfig name="priceScale" value="2"/>  
+	<settingConfig name="priceRoundType" value="roundHalfUp"/>  
+	<settingConfig name="isShowMarketPrice" value="true"/>  
+	<settingConfig name="defaultMarketPriceScale" value="1.2"/>  
+	<settingConfig name="allowedRegisterTypes" value="member,business"/>  
+	<settingConfig name="registerPoint" value="0"/>  
+	<settingConfig name="captchaTypes" value="memberLogin,memberRegister,businessLogin,businessRegister,adminLogin,review,consultation,forgotPassword,resetPassword,other"/>  
+	<settingConfig name="maxFailedLoginAttempts" value="5"/>  
+	<settingConfig name="passwordLockTime" value="10"/>  
+	<settingConfig name="safeKeyExpiryTime" value="1440"/>  
+	<settingConfig name="uploadMaxSize" value="5000"/>
+	<settingConfig name="uploadImageExtension" value="jpg,jpeg,bmp,gif,png"/>  
+	<settingConfig name="uploadMediaExtension" value="swf,flv,mp3,wav,avi,rm,rmvb,mp4"/>
+	<settingConfig name="uploadFileExtension" value="zip,rar,7z,doc,docx,xls,xlsx,ppt,pptx"/>  
+	<settingConfig name="imageUploadPath" value="/upload/image/${.now?string('yyyy/MM/dd')}/"/>
+	<settingConfig name="mediaUploadPath" value="/upload/media/${.now?string('yyyy/MM/dd')}/"/>
+	<settingConfig name="fileUploadPath" value="/upload/file/${.now?string('yyyy/MM/dd')}/"/>
+	<settingConfig name="smtpHost" value="smtp.shopxx.net"/>  
+	<settingConfig name="smtpPort" value="25"/>  
+	<settingConfig name="smtpUsername" value="test"/>  
+	<settingConfig name="smtpPassword" value="test"/>  
+	<settingConfig name="smtpSSLEnabled" value="false"/>  
+	<settingConfig name="smtpFromMail" value="test@shopxx.net"/>  
+	<settingConfig name="currencySign" value="￥"/>  
+	<settingConfig name="currencyUnit" value="元"/>  
+	<settingConfig name="stockAlertCount" value="5"/>  
+	<settingConfig name="automaticReceiveTime" value="14"/>  
+	<settingConfig name="stockAllocationTime" value="order"/>  
+	<settingConfig name="defaultPointScale" value="1"/>  
+	<settingConfig name="maxPointScale" value="1"/>  
+	<settingConfig name="isDevelopmentEnabled" value="false"/>  
+	<settingConfig name="isReviewEnabled" value="true"/>  
+	<settingConfig name="isReviewCheck" value="true"/>  
+	<settingConfig name="isConsultationEnabled" value="true"/>  
+	<settingConfig name="isConsultationCheck" value="true"/>  
+	<settingConfig name="isInvoiceEnabled" value="true"/>  
+	<settingConfig name="isTaxPriceEnabled" value="true"/>  
+	<settingConfig name="taxRate" value="0.06"/>  
+	<settingConfig name="cookiePath" value="/"/>  
+	<settingConfig name="cookieDomain" value=""/>  
+	<settingConfig name="kuaidi100Key" value=""/>  
+	<settingConfig name="isCnzzEnabled" value="false"/>  
+	<settingConfig name="cnzzSiteId" value=""/>  
+	<settingConfig name="cnzzPassword" value=""/>  
+	<settingConfig name="smsSn" value=""/>  
+	<settingConfig name="smsKey" value=""/>  
+	<settingConfig name="locale" value="zh_CN"/>  
+	<templateConfig id="header" type="page" name="头部" templatePath="shop/include/header.ftl"/>  
+	<templateConfig id="footer" type="page" name="底部" templatePath="shop/include/footer.ftl"/>  
+	<templateConfig id="login" type="page" name="登录" templatePath="shop/login/index.ftl"/>  
+	<templateConfig id="register" type="page" name="注册" templatePath="shop/register/index.ftl"/>  
+	<templateConfig id="index" type="page" name="首页" templatePath="shop/index.ftl"/>  
+	<templateConfig id="articleList" type="page" name="文章列表" templatePath="shop/article/list.ftl"/>  
+	<templateConfig id="articleSearch" type="page" name="文章搜索" templatePath="shop/article/search.ftl"/>  
+	<templateConfig id="articleDetail" type="page" name="文章详情" templatePath="shop/article/detail.ftl"/>  
+	<templateConfig id="productList" type="page" name="商品列表" templatePath="shop/product/list.ftl"/>  
+	<templateConfig id="productSearch" type="page" name="商品搜索" templatePath="shop/product/search.ftl"/>  
+	<templateConfig id="productDetail" type="page" name="商品详情" templatePath="shop/product/detail.ftl"/>  
+	<templateConfig id="brandList" type="page" name="品牌列表" templatePath="shop/brand/list.ftl"/>  
+	<templateConfig id="brandDetail" type="page" name="品牌详情" templatePath="shop/brand/detail.ftl"/>  
+	<templateConfig id="promotionDetail" type="page" name="促销详情" templatePath="shop/promotion/detail.ftl"/>  
+	<templateConfig id="productCategory" type="page" name="商品分类" templatePath="shop/product_category/index.ftl"/>  
+	<templateConfig id="friendLink" type="page" name="友情链接" templatePath="shop/friend_link/index.ftl"/>  
+	<templateConfig id="cart" type="page" name="购物车" templatePath="shop/cart/list.ftl"/>  
+	<templateConfig id="orderPrint" type="print" name="订单打印" templatePath="admin/print/order.ftl"/>  
+	<templateConfig id="productPrint" type="print" name="购物单打印" templatePath="admin/print/product.ftl"/>  
+	<templateConfig id="shippingPrint" type="print" name="发货单打印" templatePath="admin/print/shipping.ftl"/>  
+	<templateConfig id="testSmtpMail" type="mail" name="SMTP测试" templatePath="admin/mail/test_smtp.ftl"/>  
+	<templateConfig id="forgotPasswordMail" type="mail" name="忘记密码" templatePath="shop/mail/forgot_password.ftl"/>  
+	<templateConfig id="productNotifyMail" type="mail" name="到货通知" templatePath="shop/mail/product_notify.ftl"/>  
+	<templateConfig id="registerMemberMail" type="mail" name="会员注册" templatePath="shop/mail/register_member.ftl"/>  
+	<templateConfig id="createOrderMail" type="mail" name="订单创建" templatePath="shop/mail/create_order.ftl"/>  
+	<templateConfig id="updateOrderMail" type="mail" name="订单更新" templatePath="shop/mail/update_order.ftl"/>  
+	<templateConfig id="cancelOrderMail" type="mail" name="订单取消" templatePath="shop/mail/cancel_order.ftl"/>  
+	<templateConfig id="reviewOrderMail" type="mail" name="订单审核" templatePath="shop/mail/review_order.ftl"/>  
+	<templateConfig id="paymentOrderMail" type="mail" name="订单收款" templatePath="shop/mail/payment_order.ftl"/>  
+	<templateConfig id="refundsOrderMail" type="mail" name="订单退款" templatePath="shop/mail/refunds_order.ftl"/>  
+	<templateConfig id="shippingOrderMail" type="mail" name="订单发货" templatePath="shop/mail/shipping_order.ftl"/>  
+	<templateConfig id="returnsOrderMail" type="mail" name="订单退货" templatePath="shop/mail/returns_order.ftl"/>  
+	<templateConfig id="receiveOrderMail" type="mail" name="订单收货" templatePath="shop/mail/receive_order.ftl"/>  
+	<templateConfig id="completeOrderMail" type="mail" name="订单完成" templatePath="shop/mail/complete_order.ftl"/>  
+	<templateConfig id="failOrderMail" type="mail" name="订单失败" templatePath="shop/mail/fail_order.ftl"/>  
+	<templateConfig id="registerBusinessMail" type="mail" name="商家注册" templatePath="shop/mail/register_business.ftl"/>  
+	<templateConfig id="approvalStoreMail" type="mail" name="店铺审核成功" templatePath="shop/mail/approval_store.ftl"/>  
+	<templateConfig id="failStoreMail" type="mail" name="店铺审核失败" templatePath="shop/mail/fail_store.ftl"/>  
+	<templateConfig id="registerMemberSms" type="sms" name="会员注册" templatePath="shop/sms/register_member.ftl"/>  
+	<templateConfig id="createOrderSms" type="sms" name="订单创建" templatePath="shop/sms/create_order.ftl"/>  
+	<templateConfig id="updateOrderSms" type="sms" name="订单更新" templatePath="shop/sms/update_order.ftl"/>  
+	<templateConfig id="cancelOrderSms" type="sms" name="订单取消" templatePath="shop/sms/cancel_order.ftl"/>  
+	<templateConfig id="reviewOrderSms" type="sms" name="订单审核" templatePath="shop/sms/review_order.ftl"/>  
+	<templateConfig id="paymentOrderSms" type="sms" name="订单收款" templatePath="shop/sms/payment_order.ftl"/>  
+	<templateConfig id="refundsOrderSms" type="sms" name="订单退款" templatePath="shop/sms/refunds_order.ftl"/>  
+	<templateConfig id="shippingOrderSms" type="sms" name="订单发货" templatePath="shop/sms/shipping_order.ftl"/>  
+	<templateConfig id="returnsOrderSms" type="sms" name="订单退货" templatePath="shop/sms/returns_order.ftl"/>  
+	<templateConfig id="receiveOrderSms" type="sms" name="订单收货" templatePath="shop/sms/receive_order.ftl"/>  
+	<templateConfig id="completeOrderSms" type="sms" name="订单完成" templatePath="shop/sms/complete_order.ftl"/>  
+	<templateConfig id="failOrderSms" type="sms" name="订单失败" templatePath="shop/sms/fail_order.ftl"/>  
+	<templateConfig id="registerBusinessSms" type="sms" name="商家注册" templatePath="shop/sms/register_business.ftl"/>  
+	<templateConfig id="approvalStoreSms" type="sms" name="店铺审核成功" templatePath="shop/sms/approval_store.ftl"/>  
+	<templateConfig id="failStoreSms" type="sms" name="店铺审核失败" templatePath="shop/sms/fail_store.ftl"/> 
+</setting>

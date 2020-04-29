@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * 筛选
- *
+ * 
  * @author blackboy
  * @version 1.0
  */
@@ -105,7 +105,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 构造方法
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param operator
@@ -121,7 +121,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 构造方法
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param operator
@@ -140,7 +140,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回等于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -153,7 +153,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回等于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -168,7 +168,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回不等于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -181,7 +181,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回不等于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -196,7 +196,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回大于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -209,7 +209,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回小于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -222,7 +222,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回大于等于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -235,7 +235,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回小于等于筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -248,7 +248,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回相似筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -261,7 +261,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回包含筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param value
@@ -274,7 +274,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回为Null筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @return 为Null筛选
@@ -285,7 +285,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回不为Null筛选
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @return 不为Null筛选
@@ -296,7 +296,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 返回忽略大小写筛选
-	 *
+	 * 
 	 * @return 忽略大小写筛选
 	 */
 	public Filter ignoreCase() {
@@ -306,7 +306,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 获取属性
-	 *
+	 * 
 	 * @return 属性
 	 */
 	public String getProperty() {
@@ -315,7 +315,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 设置属性
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 */
@@ -325,7 +325,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 获取运算符
-	 *
+	 * 
 	 * @return 运算符
 	 */
 	public Operator getOperator() {
@@ -334,7 +334,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 设置运算符
-	 *
+	 * 
 	 * @param operator
 	 *            运算符
 	 */
@@ -344,7 +344,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 获取值
-	 *
+	 * 
 	 * @return 值
 	 */
 	public Object getValue() {
@@ -353,7 +353,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 设置值
-	 *
+	 * 
 	 * @param value
 	 *            值
 	 */
@@ -363,7 +363,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 获取是否忽略大小写
-	 *
+	 * 
 	 * @return 是否忽略大小写
 	 */
 	public Boolean getIgnoreCase() {
@@ -372,7 +372,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 设置是否忽略大小写
-	 *
+	 * 
 	 * @param ignoreCase
 	 *            是否忽略大小写
 	 */
@@ -382,7 +382,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 重写equals方法
-	 *
+	 * 
 	 * @param obj
 	 *            对象
 	 * @return 是否相等
@@ -394,7 +394,7 @@ public class Filter implements Serializable {
 
 	/**
 	 * 重写hashCode方法
-	 *
+	 * 
 	 * @return HashCode
 	 */
 	@Override

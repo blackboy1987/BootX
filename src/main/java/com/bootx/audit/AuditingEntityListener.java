@@ -15,27 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Audit - 审计实体类监听器
- *
- * @author blackboy
- * @version 1.0
- */
 public class AuditingEntityListener {
 
-	/**
-	 * 审计者Provider缓存
-	 */
-	@SuppressWarnings("rawtypes")
 	private static final Map<Class<?>, AuditorProvider> AUDITOR_PROVIDER_CACHE = new ConcurrentHashMap<>();
 
-	/**
-	 * 保存前处理
-	 *
-	 * @param entity
-	 *            实体对象
-	 */
-	@SuppressWarnings("unchecked")
 	@PrePersist
 	public void prePersist(Object entity) {
 		AuditingMetadata auditingMetadata = AuditingMetadata.getAuditingMetadata(entity.getClass());
@@ -68,12 +51,6 @@ public class AuditingEntityListener {
 		}
 	}
 
-	/**
-	 * 更新前处理
-	 *
-	 * @param entity
-	 *            实体对象
-	 */
 	@PreUpdate
 	public void preUpdate(Object entity) {
 		AuditingMetadata auditingMetadata = AuditingMetadata.getAuditingMetadata(entity.getClass());
@@ -103,14 +80,6 @@ public class AuditingEntityListener {
 		}
 	}
 
-	/**
-	 * 获取审计者Provider
-	 *
-	 * @param auditorClass
-	 *            审计者类型
-	 * @return 审计者Provider，若不存在则返回null
-	 */
-	@SuppressWarnings("rawtypes")
 	private AuditorProvider<?> getAuditorProvider(Class<?> auditorClass) {
 		Assert.notNull(auditorClass,"");
 

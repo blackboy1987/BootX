@@ -3,8 +3,6 @@ package com.bootx.audit;
 
 import com.bootx.util.BeanUtils;
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.util.Assert;
 
 import java.beans.PropertyDescriptor;
@@ -17,32 +15,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Audit - 审计元数据
- *
- * @author blackboy
- * @version 1.0
- */
+
 public final class AuditingMetadata {
 
-	/**
-	 * 审计元数据缓存
-	 */
+
 	private static final Map<Class<?>, AuditingMetadata> AUDITING_METADATA_CACHE = new ConcurrentHashMap<>();
 
-	/**
-	 * "创建者"属性
-	 */
 	private final List<Property> createdByProperties;
 
-	/**
-	 * "创建日期"属性
-	 */
 	private final List<Property> createdDateProperties;
 
-	/**
-	 * "最后修改者"属性
-	 */
 	private final List<Property> lastModifiedByProperties;
 
 	/**
@@ -52,7 +34,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 构造方法
-	 *
+	 * 
 	 * @param type
 	 *            类
 	 */
@@ -67,7 +49,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 获取"创建者"属性
-	 *
+	 * 
 	 * @return "创建者"属性
 	 */
 	public List<Property> getCreatedByProperties() {
@@ -76,7 +58,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 获取"创建日期"属性
-	 *
+	 * 
 	 * @return "创建日期"属性
 	 */
 	public List<Property> getCreatedDateProperties() {
@@ -85,7 +67,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 获取"最后修改者"属性
-	 *
+	 * 
 	 * @return "最后修改者"属性
 	 */
 	public List<Property> getLastModifiedByProperties() {
@@ -94,7 +76,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 获取"最后修改日期"属性
-	 *
+	 * 
 	 * @return "最后修改日期"属性
 	 */
 	public List<Property> getLastModifiedDateProperties() {
@@ -103,7 +85,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 获取审计元数据
-	 *
+	 * 
 	 * @param type
 	 *            类
 	 * @return 审计元数据
@@ -121,7 +103,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 判断是否为审计元数据
-	 *
+	 * 
 	 * @return 是否为审计元数据
 	 */
 	public boolean isAuditable() {
@@ -130,7 +112,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 查找属性
-	 *
+	 * 
 	 * @param type
 	 *            类
 	 * @param annotationType
@@ -163,7 +145,7 @@ public final class AuditingMetadata {
 
 	/**
 	 * 属性
-	 *
+	 * 
 	 * @author blackboy
 	 * @version 1.0
 	 */
@@ -191,7 +173,7 @@ public final class AuditingMetadata {
 
 		/**
 		 * 构造方法
-		 *
+		 * 
 		 * @param field
 		 *            Field
 		 * @param propertyDescriptor
@@ -208,7 +190,7 @@ public final class AuditingMetadata {
 
 		/**
 		 * 获取名称
-		 *
+		 * 
 		 * @return 名称
 		 */
 		public String getName() {
@@ -217,7 +199,7 @@ public final class AuditingMetadata {
 
 		/**
 		 * 获取类型
-		 *
+		 * 
 		 * @return 类型
 		 */
 		public Class<?> getType() {
@@ -226,7 +208,7 @@ public final class AuditingMetadata {
 
 		/**
 		 * 获取Field
-		 *
+		 * 
 		 * @return Field
 		 */
 		public Field getField() {
@@ -235,7 +217,7 @@ public final class AuditingMetadata {
 
 		/**
 		 * 获取PropertyDescriptor
-		 *
+		 * 
 		 * @return PropertyDescriptor
 		 */
 		public PropertyDescriptor getPropertyDescriptor() {
@@ -244,7 +226,7 @@ public final class AuditingMetadata {
 
 		/**
 		 * 设置值
-		 *
+		 * 
 		 * @param target
 		 *            目标
 		 * @param value

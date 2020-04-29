@@ -15,69 +15,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Utils - Bean
- *
- * @author blackboy
- * @version 1.0
- */
 public final class BeanUtils {
 
-	/**
-	 * Field缓存
-	 */
 	private static final Map<Class<?>, Field[]> DECLARED_FIELDS_CACHE = new ConcurrentHashMap<>();
 
-	/**
-	 * Method缓存
-	 */
 	private static final Map<Class<?>, Method[]> DECLARED_METHODS_CACHE = new ConcurrentHashMap<>();
 
-	/**
-	 * PropertyDescriptor缓存
-	 */
+
 	private static final Map<Class<?>, PropertyDescriptor[]> PROPERTY_DESCRIPTORS_CACHE = new ConcurrentHashMap<>();
 
-	/**
-	 * 不可实例化
-	 */
 	private BeanUtils() {
 	}
 
-	/**
-	 * 设置Field允许访问
-	 *
-	 * @param field
-	 *            Field
-	 */
 	public static void setAccessible(Field field) {
 		if (field != null && !field.isAccessible() && (!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers()) || Modifier.isFinal(field.getModifiers()))) {
 			field.setAccessible(true);
 		}
 	}
 
-	/**
-	 * 设置Method允许访问
-	 *
-	 * @param method
-	 *            Method
-	 */
 	public static void setAccessible(Method method) {
 		if (method != null && !method.isAccessible() && (!Modifier.isPublic(method.getModifiers()) || !Modifier.isPublic(method.getDeclaringClass().getModifiers()))) {
 			method.setAccessible(true);
 		}
 	}
 
-	/**
-	 * 设置Field值
-	 *
-	 * @param field
-	 *            Field
-	 * @param target
-	 *            目标
-	 * @param value
-	 *            值
-	 */
 	public static void setField(Field field, Object target, Object value) {
 		Assert.notNull(field,"");
 		Assert.notNull(target,"");
@@ -89,17 +50,6 @@ public final class BeanUtils {
 		}
 	}
 
-	/**
-	 * 执行Method
-	 *
-	 * @param method
-	 *            Method
-	 * @param target
-	 *            目标
-	 * @param args
-	 *            参数
-	 * @return 结果
-	 */
 	public static Object invokeMethod(Method method, Object target, Object... args) {
 		Assert.notNull(method,"");
 		Assert.notNull(target,"");
@@ -115,15 +65,6 @@ public final class BeanUtils {
 		}
 	}
 
-	/**
-	 * 查找Field
-	 *
-	 * @param type
-	 *            类
-	 * @param annotationType
-	 *            Annotation类
-	 * @return Field，包含父类Field
-	 */
 	public static List<Field> findFields(Class<?> type, Class<? extends Annotation> annotationType) {
 		Assert.notNull(type,"");
 		Assert.notNull(annotationType,"");
@@ -141,15 +82,6 @@ public final class BeanUtils {
 		return result;
 	}
 
-	/**
-	 * 查找Method
-	 *
-	 * @param type
-	 *            类
-	 * @param annotationType
-	 *            Annotation类
-	 * @return Method，包含父类Method
-	 */
 	public static List<Method> findMethods(Class<?> type, Class<? extends Annotation> annotationType) {
 		Assert.notNull(type,"");
 		Assert.notNull(annotationType,"");
@@ -167,15 +99,6 @@ public final class BeanUtils {
 		return result;
 	}
 
-	/**
-	 * 查找PropertyDescriptor
-	 *
-	 * @param type
-	 *            类
-	 * @param annotationType
-	 *            Annotation类
-	 * @return PropertyDescriptor
-	 */
 	public static List<PropertyDescriptor> getPropertyDescriptors(Class<?> type, Class<? extends Annotation> annotationType) {
 		Assert.notNull(type,"");
 		Assert.notNull(annotationType,"");
@@ -196,15 +119,6 @@ public final class BeanUtils {
 		return result;
 	}
 
-	/**
-	 * 获取Annotation
-	 *
-	 * @param annotatedElement
-	 *            Annotation元素
-	 * @param annotationType
-	 *            Annotation类
-	 * @return Annotation
-	 */
 	private static <A extends Annotation> A getAnnotation(AnnotatedElement annotatedElement, Class<A> annotationType) {
 		Assert.notNull(annotatedElement,"");
 		Assert.notNull(annotationType,"");
@@ -221,13 +135,6 @@ public final class BeanUtils {
 		return annotation;
 	}
 
-	/**
-	 * 获取Field
-	 *
-	 * @param type
-	 *            类
-	 * @return Field
-	 */
 	private static Field[] getDeclaredFields(Class<?> type) {
 		Assert.notNull(type,"");
 
@@ -239,13 +146,6 @@ public final class BeanUtils {
 		return result;
 	}
 
-	/**
-	 * 获取Method
-	 *
-	 * @param type
-	 *            类
-	 * @return Method
-	 */
 	private static Method[] getDeclaredMethods(Class<?> type) {
 		Assert.notNull(type,"");
 
@@ -259,13 +159,6 @@ public final class BeanUtils {
 		return result;
 	}
 
-	/**
-	 * 获取接口实现Method
-	 *
-	 * @param type
-	 *            类
-	 * @return 接口实现Method
-	 */
 	private static Method[] findConcreteMethodsOnInterfaces(Class<?> type) {
 		Assert.notNull(type,"");
 
@@ -280,13 +173,6 @@ public final class BeanUtils {
 		return foundMethods.toArray(new Method[foundMethods.size()]);
 	}
 
-	/**
-	 * 获取PropertyDescriptor
-	 *
-	 * @param type
-	 *            类
-	 * @return PropertyDescriptor
-	 */
 	private static PropertyDescriptor[] getPropertyDescriptors(Class<?> type) {
 		Assert.notNull(type,"");
 

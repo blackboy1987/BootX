@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * 排序
- *
+ * 
  * @author blackboy
  * @version 1.0
  */
@@ -55,7 +55,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 构造方法
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @param direction
@@ -68,7 +68,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 返回递增排序
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @return 递增排序
@@ -79,7 +79,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 返回递减排序
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 * @return 递减排序
@@ -90,7 +90,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 获取属性
-	 *
+	 * 
 	 * @return 属性
 	 */
 	public String getProperty() {
@@ -99,7 +99,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 设置属性
-	 *
+	 * 
 	 * @param property
 	 *            属性
 	 */
@@ -109,7 +109,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 获取方向
-	 *
+	 * 
 	 * @return 方向
 	 */
 	public Direction getDirection() {
@@ -118,7 +118,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 设置方向
-	 *
+	 * 
 	 * @param direction
 	 *            方向
 	 */
@@ -128,7 +128,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 重写equals方法
-	 *
+	 * 
 	 * @param obj
 	 *            对象
 	 * @return 是否相等
@@ -140,7 +140,7 @@ public class Order implements Serializable {
 
 	/**
 	 * 重写hashCode方法
-	 *
+	 * 
 	 * @return HashCode
 	 */
 	@Override

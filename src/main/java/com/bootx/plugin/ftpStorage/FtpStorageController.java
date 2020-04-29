@@ -3,8 +3,10 @@ package com.bootx.plugin.ftpStorage;
 
 import com.bootx.common.Message;
 import com.bootx.controller.admin.BaseController;
+import com.bootx.entity.BaseEntity;
 import com.bootx.entity.PluginConfig;
 import com.bootx.service.PluginConfigService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -19,7 +21,7 @@ import java.util.Map;
 
 /**
  * Controller - FTP存储
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -62,7 +64,8 @@ public class FtpStorageController extends BaseController {
 	 * 设置
 	 */
 	@PostMapping("/setting")
-	public PluginConfig setting(ModelMap model) {
+  @JsonView(BaseEntity.EditView.class)
+	public PluginConfig setting() {
 		return ftpStoragePlugin.getPluginConfig();
 	}
 
@@ -70,7 +73,7 @@ public class FtpStorageController extends BaseController {
 	 * 更新
 	 */
 	@PostMapping("/update")
-	public Message update(String host, Integer port, String username, String password, String urlPrefix, @RequestParam(defaultValue = "false") Boolean isEnabled, Integer order, RedirectAttributes redirectAttributes) {
+	public Message update(String host, Integer port, String username, String password, String urlPrefix, @RequestParam(defaultValue = "false") Boolean isEnabled, Integer order) {
 		PluginConfig pluginConfig = ftpStoragePlugin.getPluginConfig();
 		Map<String, String> attributes = new HashMap<>();
 		attributes.put("host", host);
@@ -84,5 +87,4 @@ public class FtpStorageController extends BaseController {
 		pluginConfigService.update(pluginConfig);
 		return Message.success("操作成功");
 	}
-
 }

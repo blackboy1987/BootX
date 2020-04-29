@@ -2,6 +2,7 @@
 package com.bootx.entity;
 
 import com.bootx.common.BaseAttributeConverter;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 /**
  * Entity - 插件配置
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -30,6 +31,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 	 * 是否启用
 	 */
 	@Column(nullable = false)
+  @JsonView({BaseEntity.EditView.class})
 	private Boolean isEnabled;
 
 	/**
@@ -37,11 +39,12 @@ public class PluginConfig extends OrderedEntity<Long> {
 	 */
 	@Column(length = 4000)
 	@Convert(converter = AttributeConverter.class)
+  @JsonView({BaseEntity.EditView.class})
 	private Map<String, String> attributes = new HashMap<>();
 
 	/**
 	 * 获取插件ID
-	 * 
+	 *
 	 * @return 插件ID
 	 */
 	public String getPluginId() {
@@ -50,7 +53,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 设置插件ID
-	 * 
+	 *
 	 * @param pluginId
 	 *            插件ID
 	 */
@@ -60,7 +63,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 获取是否启用
-	 * 
+	 *
 	 * @return 是否启用
 	 */
 	public Boolean getIsEnabled() {
@@ -69,7 +72,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 设置是否启用
-	 * 
+	 *
 	 * @param isEnabled
 	 *            是否启用
 	 */
@@ -79,7 +82,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 获取属性
-	 * 
+	 *
 	 * @return 属性
 	 */
 	public Map<String, String> getAttributes() {
@@ -88,7 +91,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 设置属性
-	 * 
+	 *
 	 * @param attributes
 	 *            属性
 	 */
@@ -98,7 +101,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 获取属性值
-	 * 
+	 *
 	 * @param name
 	 *            属性名称
 	 * @return 属性值
@@ -113,7 +116,7 @@ public class PluginConfig extends OrderedEntity<Long> {
 
 	/**
 	 * 类型转换 - 属性
-	 * 
+	 *
 	 * @author blackboy
 	 * @version 1.0
 	 */

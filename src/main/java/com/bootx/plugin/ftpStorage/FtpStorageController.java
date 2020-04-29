@@ -7,7 +7,12 @@ import com.bootx.entity.PluginConfig;
 import com.bootx.service.PluginConfigService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +36,7 @@ public class FtpStorageController extends BaseController {
 	 * 安装
 	 */
 	@PostMapping("/install")
-	public @ResponseBody Message install() {
+	public Message install() {
 		if (!ftpStoragePlugin.getIsInstalled()) {
 			PluginConfig pluginConfig = new PluginConfig();
 			pluginConfig.setPluginId(ftpStoragePlugin.getId());
@@ -39,25 +44,25 @@ public class FtpStorageController extends BaseController {
 			pluginConfig.setAttributes(null);
 			pluginConfigService.save(pluginConfig);
 		}
-		return SUCCESS_MESSAGE;
+		return Message.success("操作成功");
 	}
 
 	/**
 	 * 卸载
 	 */
 	@PostMapping("/uninstall")
-	public @ResponseBody Message uninstall() {
+	public Message uninstall() {
 		if (ftpStoragePlugin.getIsInstalled()) {
 			pluginConfigService.deleteByPluginId(ftpStoragePlugin.getId());
 		}
-		return SUCCESS_MESSAGE;
+		return Message.success("操作成功");
 	}
 
 	/**
 	 * 设置
 	 */
 	@PostMapping("/setting")
-	public PluginConfig setting() {
+	public PluginConfig setting(ModelMap model) {
 		return ftpStoragePlugin.getPluginConfig();
 	}
 
@@ -65,7 +70,7 @@ public class FtpStorageController extends BaseController {
 	 * 更新
 	 */
 	@PostMapping("/update")
-	public Message update(String host, Integer port, String username, String password, String urlPrefix, @RequestParam(defaultValue = "false") Boolean isEnabled, Integer order) {
+	public Message update(String host, Integer port, String username, String password, String urlPrefix, @RequestParam(defaultValue = "false") Boolean isEnabled, Integer order, RedirectAttributes redirectAttributes) {
 		PluginConfig pluginConfig = ftpStoragePlugin.getPluginConfig();
 		Map<String, String> attributes = new HashMap<>();
 		attributes.put("host", host);

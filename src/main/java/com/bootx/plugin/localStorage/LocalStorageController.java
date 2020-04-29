@@ -5,11 +5,16 @@ import com.bootx.common.Message;
 import com.bootx.controller.admin.BaseController;
 import com.bootx.entity.PluginConfig;
 import com.bootx.service.PluginConfigService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Controller - 本地文件存储
@@ -17,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author blackboy
  * @version 1.0
  */
-@RestController("adminLocalStorageController")
+@Controller("adminLocalStorageController")
 @RequestMapping("/api/storage_plugin/local_storage")
 public class LocalStorageController extends BaseController {
 
@@ -29,8 +34,8 @@ public class LocalStorageController extends BaseController {
 	/**
 	 * 设置
 	 */
-	@PostMapping("/setting")
-	public PluginConfig setting() {
+	@GetMapping("/setting")
+	public PluginConfig setting(ModelMap model) {
 		return localStoragePlugin.getPluginConfig();
 	}
 
@@ -38,12 +43,16 @@ public class LocalStorageController extends BaseController {
 	 * 更新
 	 */
 	@PostMapping("/update")
-	public Message update(Integer order, RedirectAttributes redirectAttributes) {
+	public Message update(Integer order, String uploadPath, String urlPrefix) {
 		PluginConfig pluginConfig = localStoragePlugin.getPluginConfig();
 		pluginConfig.setIsEnabled(true);
 		pluginConfig.setOrder(order);
+		Map<String, String> attributes = new HashMap<>();
+		attributes.put("urlPrefix", StringUtils.removeEnd(urlPrefix, "/"));
+		attributes.put("uploadPath", StringUtils.removeEnd(uploadPath, "/"));
+		pluginConfig.setAttributes(attributes);
 		pluginConfigService.update(pluginConfig);
-		return SUCCESS_MESSAGE;
+		return Message.success("操作成功");
 	}
 
 }

@@ -7,8 +7,10 @@ import com.bootx.entity.PluginConfig;
 import com.bootx.service.PluginConfigService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class OssStorageController extends BaseController {
 	 * 安装
 	 */
 	@PostMapping("/install")
-	public @ResponseBody Message install() {
+	public Message install() {
 		if (!ossStoragePlugin.getIsInstalled()) {
 			PluginConfig pluginConfig = new PluginConfig();
 			pluginConfig.setPluginId(ossStoragePlugin.getId());
@@ -40,18 +42,18 @@ public class OssStorageController extends BaseController {
 			pluginConfig.setAttributes(null);
 			pluginConfigService.save(pluginConfig);
 		}
-		return SUCCESS_MESSAGE;
+		return Message.success("操作成功");
 	}
 
 	/**
 	 * 卸载
 	 */
 	@PostMapping("/uninstall")
-	public @ResponseBody Message uninstall() {
+	public Message uninstall() {
 		if (ossStoragePlugin.getIsInstalled()) {
 			pluginConfigService.deleteByPluginId(ossStoragePlugin.getId());
 		}
-		return SUCCESS_MESSAGE;
+		return Message.success("操作成功");
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class OssStorageController extends BaseController {
 	 * 更新
 	 */
 	@PostMapping("/update")
-	public Message update(String endpoint, String accessId, String accessKey, String bucketName, String urlPrefix, @RequestParam(defaultValue = "false") Boolean isEnabled, Integer order, RedirectAttributes redirectAttributes) {
+	public Message update(String endpoint, String accessId, String accessKey, String bucketName, String urlPrefix,String isTransform,String mpsRegionId,String pipelineId,String templateId,String ossLocation,String transformCallback, @RequestParam(defaultValue = "false") Boolean isEnabled, Integer order) {
 		PluginConfig pluginConfig = ossStoragePlugin.getPluginConfig();
 		Map<String, String> attributes = new HashMap<>();
 		attributes.put("endpoint", endpoint);
@@ -78,7 +80,6 @@ public class OssStorageController extends BaseController {
 		pluginConfig.setIsEnabled(isEnabled);
 		pluginConfig.setOrder(order);
 		pluginConfigService.update(pluginConfig);
-		return SUCCESS_MESSAGE;
+		return Message.success("操作成功");
 	}
-
 }

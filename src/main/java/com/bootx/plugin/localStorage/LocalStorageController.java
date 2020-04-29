@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller - 本地文件存储
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author blackboy
  * @version 1.0
  */
-@Controller("adminLocalStorageController")
+@RestController("adminLocalStorageController")
 @RequestMapping("/api/storage_plugin/local_storage")
 public class LocalStorageController extends BaseController {
 

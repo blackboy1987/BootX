@@ -8,22 +8,23 @@ import com.bootx.service.FileService;
 import com.bootx.util.SystemUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Controller - 系统设置
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminstingController")
-@RequestMapping("/admin/api/setting")
+@RequestMapping("/api/setting")
 public class SettingController extends BaseController {
 
 	@Autowired
@@ -34,16 +35,17 @@ public class SettingController extends BaseController {
 	/**
 	 * 编辑
 	 */
-	@GetMapping("/edit")
-	public String edit(ModelMap model) {
-		model.addAttribute("setting", SystemUtils.getSetting());
-		model.addAttribute("locales", Setting.Locale.values());
-		model.addAttribute("watermarkPositions", Setting.WatermarkPosition.values());
-		model.addAttribute("roundTypes", Setting.RoundType.values());
-		model.addAttribute("registerTypes", Setting.RegisterType.values());
-		model.addAttribute("captchaTypes", Setting.CaptchaType.values());
-		model.addAttribute("stockAllocationTimes", Setting.StockAllocationTime.values());
-		return "admin/setting/edit";
+	@PostMapping("/edit")
+	public Map<String,Object> edit() {
+	  Map<String,Object> data = new HashMap<>();
+    data.put("setting", SystemUtils.getSetting());
+    data.put("locales", Setting.Locale.values());
+    data.put("watermarkPositions", Setting.WatermarkPosition.values());
+    data.put("roundTypes", Setting.RoundType.values());
+    data.put("registerTypes", Setting.RegisterType.values());
+    data.put("captchaTypes", Setting.CaptchaType.values());
+    data.put("stockAllocationTimes", Setting.StockAllocationTime.values());
+		return data;
 	}
 
 	/**

@@ -502,7 +502,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity<ID>, ID extends Serializa
 
 		long total = count(criteriaQuery, null);
 		TypedQuery<T> query = entityManager.createQuery(criteriaQuery);
-		query.setFirstResult((pageable.getPageNumber() - 1) * pageable.getPageSize());
+		query.setFirstResult((pageable.getCurrent() - 1) * pageable.getPageSize());
 		query.setMaxResults(pageable.getPageSize());
 		if (lockModeType != null) {
 			query.setLockMode(lockModeType);

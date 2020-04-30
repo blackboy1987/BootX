@@ -31,4 +31,5 @@ public interface CaptchaService {
 	 */
 	boolean isValid(String captchaId, String captcha);
 
+
 }

@@ -25,7 +25,7 @@ public class KaptchaConfig {
         properties.setProperty("kaptcha.textproducer.font.size","22");
         properties.setProperty("kaptcha.noise.impl","com.google.code.kaptcha.impl.NoNoise");
         properties.setProperty("kaptcha.obscurificator.impl","com.google.code.kaptcha.impl.ShadowGimpy");
-        properties.setProperty("kaptcha.background.impl","com.igomall.captcha.CaptchaBackground");
+        properties.setProperty("kaptcha.background.impl","com.bootx.captcha.CaptchaBackground");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;

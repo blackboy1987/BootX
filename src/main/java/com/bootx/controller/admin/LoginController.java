@@ -26,7 +26,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController("adminLoginController")
-@RequestMapping("//admin/api/login")
+@RequestMapping("/api/login")
 public class LoginController extends BaseController {
 
 	@Autowired
@@ -41,7 +41,7 @@ public class LoginController extends BaseController {
 	 * 登录页面
 	 */
 	@PostMapping
-	public Map<String,Object> index(String type,String username, String password, HttpServletRequest request) {
+	public Map<String,Object> index(String type,String username, String password,String captcha, String captchaToken, HttpServletRequest request) {
 		Map<String,Object> data = new HashMap<>();
 		data.put("type",type);
 		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)){

@@ -1,6 +1,8 @@
 
 package com.bootx.controller.admin;
 
+import com.bootx.common.Setting;
+import com.bootx.util.SystemUtils;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.bootx.common.Message;
 import com.bootx.common.Page;
@@ -27,7 +29,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/admin/api/admin")
+@RequestMapping("/api/admin")
 public class AdminController extends BaseController {
 
 	@Autowired
@@ -84,8 +86,6 @@ public class AdminController extends BaseController {
 			admin.setLockDate(null);
 			admin.setLastLoginIp(null);
 			admin.setLastLoginDate(null);
-
-
 			adminService.save(admin);
 			return SUCCESS_MESSAGE;
 		}else {
@@ -154,6 +154,49 @@ public class AdminController extends BaseController {
 		}
 		adminService.delete(ids);
 		return SUCCESS_MESSAGE;
+	}
+
+	/**
+	 * 禁用
+	 */
+	@PostMapping("/disabled")
+	public Message disabled(Long id) {
+		Admin admin = adminService.find(id);
+		if(admin==null){
+			return Message.error("账号不存在");
+		}
+		admin.setIsEnabled(false);
+		adminService.update(admin);
+		return Message.success("操作成功");
+	}
+
+	/**
+	 * 启用
+	 */
+	@PostMapping("/enabled")
+	public Message enabled(Long id) {
+		Admin admin = adminService.find(id);
+		if(admin==null){
+			return Message.error("账号不存在");
+		}
+		admin.setIsEnabled(true);
+		adminService.update(admin);
+		return Message.success("操作成功");
+	}
+
+	/**
+	 * 重置密码
+	 */
+	@PostMapping("/reset")
+	public Message reset(Long id) {
+		Setting setting = SystemUtils.getSetting();
+		Admin admin = adminService.find(id);
+		if(admin==null){
+			return Message.error("账号不存在");
+		}
+		admin.setPassword(setting.getDefaultPassword());
+		adminService.update(admin);
+		return Message.success("操作成功");
 	}
 
 }

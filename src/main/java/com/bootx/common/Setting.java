@@ -618,6 +618,9 @@ public class Setting implements Serializable {
 	@NotNull
 	private Setting.Locale locale;
 
+	@NotEmpty
+	private String defaultPassword;
+
 	/**
 	 * 获取网站名称
 	 * 
@@ -1967,6 +1970,15 @@ public class Setting implements Serializable {
 	 */
 	public void setLocale(Locale locale) {
 		this.locale = locale;
+	}
+
+
+	public String getDefaultPassword() {
+		return defaultPassword;
+	}
+
+	public void setDefaultPassword(String defaultPassword) {
+		this.defaultPassword = defaultPassword;
 	}
 
 	/**

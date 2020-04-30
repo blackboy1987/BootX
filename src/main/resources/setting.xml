@@ -70,7 +70,8 @@
 	<settingConfig name="cnzzPassword" value=""/>  
 	<settingConfig name="smsSn" value=""/>  
 	<settingConfig name="smsKey" value=""/>  
-	<settingConfig name="locale" value="zh_CN"/>  
+	<settingConfig name="locale" value="zh_CN"/>
+	<settingConfig name="defaultPassword" value="123456"/>
 	<templateConfig id="header" type="page" name="头部" templatePath="shop/include/header.ftl"/>  
 	<templateConfig id="footer" type="page" name="底部" templatePath="shop/include/footer.ftl"/>  
 	<templateConfig id="login" type="page" name="登录" templatePath="shop/login/index.ftl"/>  

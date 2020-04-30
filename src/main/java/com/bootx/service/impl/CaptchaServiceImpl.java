@@ -1,8 +1,8 @@
 
 package com.bootx.service.impl;
 
-import com.google.code.kaptcha.Producer;
 import com.bootx.service.CaptchaService;
+import com.google.code.kaptcha.Producer;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
@@ -57,5 +57,4 @@ public class CaptchaServiceImpl implements CaptchaService {
 		}
 		return false;
 	}
-
 }

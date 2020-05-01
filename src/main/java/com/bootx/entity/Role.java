@@ -66,7 +66,6 @@ public class Role extends BaseEntity<Long> {
 	private Set<Admin> admins = new HashSet<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(updatable = false)
 	private Department department;
 
 	/**
@@ -181,7 +180,7 @@ public class Role extends BaseEntity<Long> {
 	}
 
 	@Transient
-	@JsonView({Role.ListView.class, Role.EditView.class})
+	@JsonView({EditView.class})
 	public Long getDepartmentId() {
 		if(department!=null){
 			return department.getId();
@@ -190,7 +189,7 @@ public class Role extends BaseEntity<Long> {
 	}
 
 	@Transient
-	@JsonView({Role.ListView.class, Role.EditView.class})
+	@JsonView({ListView.class, EditView.class})
 	public String getDepartmentName() {
 		if(department!=null){
 			return department.getName();

@@ -6,6 +6,7 @@ import com.bootx.common.Page;
 import com.bootx.common.Pageable;
 import com.bootx.entity.BaseEntity;
 import com.bootx.entity.Role;
+import com.bootx.service.DepartmentService;
 import com.bootx.service.RoleService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.collections.CollectionUtils;
@@ -30,12 +31,15 @@ public class RoleController extends BaseController {
 
 	@Autowired
 	private RoleService roleService;
+  @Autowired
+  private DepartmentService departmentService;
 
 	/**
 	 * 保存
 	 */
 	@PostMapping("/save")
-	public Message save(Role role) {
+	public Message save(Role role,Long departmentId) {
+	  role.setDepartment(departmentService.find(departmentId));
     Map<String,String> validResults = isValid1(role, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
       return Message.error1("参数错误",validResults);
@@ -53,6 +57,21 @@ public class RoleController extends BaseController {
 	public Role edit(Long id) {
 		return roleService.find(id);
 	}
+
+  /**
+   * 保存
+   */
+  @PostMapping("/update")
+  public Message update(Role role,Long departmentId) {
+    role.setDepartment(departmentService.find(departmentId));
+    Map<String,String> validResults = isValid1(role, BaseEntity.Save.class);
+    if(!validResults.isEmpty()){
+      return Message.error1("参数错误",validResults);
+    }
+    roleService.update(role,"admins");
+    return Message.success("添加成功");
+
+  }
 
 	/**
 	 * 列表

@@ -36,7 +36,7 @@ public class Department extends OrderedEntity<Long> {
 	@NotEmpty
 	@Length(max = 200)
 	@Column(nullable = false)
-	@JsonView({ListView.class,TreeView.class})
+	@JsonView({ListView.class,TreeView.class, EditView.class})
 	private String name;
 
 	/**
@@ -57,7 +57,7 @@ public class Department extends OrderedEntity<Long> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Department parent;
 
-	@JsonView({ListView.class})
+	@JsonView({ListView.class, EditView.class})
 	private Boolean isEnabled;
 
 	@OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
@@ -242,6 +242,7 @@ public class Department extends OrderedEntity<Long> {
 
 
 	@Transient
+  @JsonView({EditView.class})
 	public Long getParentId(){
 		if(parent!=null){
 			return parent.getId();

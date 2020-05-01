@@ -1,19 +1,17 @@
 
 package com.bootx.controller.admin;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.bootx.common.Message;
-import com.bootx.common.Page;
-import com.bootx.common.Pageable;
+import com.bootx.entity.BaseEntity;
 import com.bootx.entity.Department;
 import com.bootx.service.DepartmentService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -41,16 +39,11 @@ public class DepartmentController extends BaseController {
 		if (!isValid(department)) {
 			return Message.error("参数错误");
 		}
-		if(department.isNew()){
-			department.setTreePath(null);
-			department.setGrade(null);
-			department.setChildren(null);
-			department.setAdmins(null);
-			departmentService.save(department);
-		}else{
-			departmentService.update(department,"children","admins","roles");
-		}
-
+    department.setTreePath(null);
+    department.setGrade(null);
+    department.setChildren(null);
+    department.setAdmins(null);
+    departmentService.save(department);
 		return Message.success("操作成功");
 	}
 
@@ -58,9 +51,33 @@ public class DepartmentController extends BaseController {
 	 * 编辑
 	 */
 	@PostMapping("/edit")
+  @JsonView(BaseEntity.EditView.class)
 	public Department edit(Long id) {
 		return departmentService.find(id);
 	}
+
+  /**
+   * 更新
+   */
+  @PostMapping("/update")
+  public Message update(Department department, Long parentId) {
+    department.setParent(departmentService.find(parentId));
+    if (!isValid(department)) {
+      return Message.error("参数错误");
+    }
+    if (department.getParent() != null) {
+      Department parent = department.getParent();
+      if (parent.equals(department)) {
+        return Message.error("参数错误");
+      }
+      List<Department> children = departmentService.findChildren(parent, true, null);
+      if (children != null && children.contains(parent)) {
+        return Message.error("参数错误");
+      }
+    }
+    departmentService.update(department, "treePath", "grade", "children", "admins", "roles");
+    return Message.success("更新成功");
+  }
 
 	/**
 	 * 列表

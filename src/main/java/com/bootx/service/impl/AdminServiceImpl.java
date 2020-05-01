@@ -3,9 +3,11 @@ package com.bootx.service.impl;
 
 import com.bootx.common.Page;
 import com.bootx.common.Pageable;
+import com.bootx.common.Setting;
 import com.bootx.dao.AdminDao;
 import com.bootx.entity.*;
 import com.bootx.service.AdminService;
+import com.bootx.util.SystemUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,7 +21,7 @@ import java.util.Set;
 
 /**
  * Service - 管理员
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -138,4 +140,23 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
 	public Page<Admin> findPage(Pageable pageable, String name, String username, String email, Department department, Date beginDate, Date endDate) {
 		return adminDao.findPage(pageable,name,username,email,department,beginDate,endDate);
 	}
+
+	@Override
+	public String createCardNo(){
+	  Long max = jdbcTemplate.queryForObject("select max(CAST(card_no AS SIGNED )) from bootx_admin",Long.class);
+	  return createCardNo(max+1);
+  }
+
+  private String createCardNo(Long value){
+    Setting setting = SystemUtils.getSetting();
+    Integer codeNoLength = setting.getCodeNoLength();
+    Integer valueLength = String.valueOf(value).length();
+    StringBuilder result = new StringBuilder(value + "");
+    if(codeNoLength>valueLength){
+      for (int i=0;i<codeNoLength-valueLength;i++){
+        result.insert(0, "0");
+      }
+    }
+    return result.toString();
+  }
 }

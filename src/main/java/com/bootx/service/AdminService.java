@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * Service - 管理员
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -19,7 +19,7 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	/**
 	 * 判断用户名是否存在
-	 * 
+	 *
 	 * @param username
 	 *            用户名(忽略大小写)
 	 * @return 用户名是否存在
@@ -28,7 +28,7 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	/**
 	 * 根据用户名查找管理员
-	 * 
+	 *
 	 * @param username
 	 *            用户名(忽略大小写)
 	 * @return 管理员，若不存在则返回null
@@ -37,7 +37,7 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	/**
 	 * 判断E-mail是否存在
-	 * 
+	 *
 	 * @param email
 	 *            E-mail(忽略大小写)
 	 * @return E-mail是否存在
@@ -46,7 +46,7 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	/**
 	 * 判断E-mail是否唯一
-	 * 
+	 *
 	 * @param id
 	 *            ID
 	 * @param email
@@ -57,7 +57,7 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	/**
 	 * 根据E-mail查找管理员
-	 * 
+	 *
 	 * @param email
 	 *            E-mail(忽略大小写)
 	 * @return 管理员，若不存在则返回null
@@ -65,5 +65,7 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 	Admin findByEmail(String email);
 
 	Page<Admin> findPage(Pageable pageable, String name, String username, String email, Department department, Date beginDate, Date endDate);
+
+	String createCardNo();
 
 }

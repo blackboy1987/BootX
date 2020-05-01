@@ -621,9 +621,14 @@ public class Setting implements Serializable {
 	@NotEmpty
 	private String defaultPassword;
 
+  /**
+   * 系统用户（Admin）编号的长度
+   */
+	private Integer codeNoLength;
+
 	/**
 	 * 获取网站名称
-	 * 
+	 *
 	 * @return 网站名称
 	 */
 	public String getSiteName() {
@@ -632,7 +637,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置网站名称
-	 * 
+	 *
 	 * @param siteName
 	 *            网站名称
 	 */
@@ -642,7 +647,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取网站网址
-	 * 
+	 *
 	 * @return 网站网址
 	 */
 	public String getSiteUrl() {
@@ -651,7 +656,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置网站网址
-	 * 
+	 *
 	 * @param siteUrl
 	 *            网站网址
 	 */
@@ -661,7 +666,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取logo
-	 * 
+	 *
 	 * @return logo
 	 */
 	public String getLogo() {
@@ -670,7 +675,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置logo
-	 * 
+	 *
 	 * @param logo
 	 *            logo
 	 */
@@ -680,7 +685,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取热门搜索
-	 * 
+	 *
 	 * @return 热门搜索
 	 */
 	public String getHotSearch() {
@@ -689,7 +694,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置热门搜索
-	 * 
+	 *
 	 * @param hotSearch
 	 *            热门搜索
 	 */
@@ -702,7 +707,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取联系地址
-	 * 
+	 *
 	 * @return 联系地址
 	 */
 	public String getAddress() {
@@ -711,7 +716,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置联系地址
-	 * 
+	 *
 	 * @param address
 	 *            联系地址
 	 */
@@ -721,7 +726,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取联系电话
-	 * 
+	 *
 	 * @return 联系电话
 	 */
 	public String getPhone() {
@@ -730,7 +735,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置联系电话
-	 * 
+	 *
 	 * @param phone
 	 *            联系电话
 	 */
@@ -740,7 +745,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取邮政编码
-	 * 
+	 *
 	 * @return 邮政编码
 	 */
 	public String getZipCode() {
@@ -749,7 +754,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置邮政编码
-	 * 
+	 *
 	 * @param zipCode
 	 *            邮政编码
 	 */
@@ -759,7 +764,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取E-mail
-	 * 
+	 *
 	 * @return E-mail
 	 */
 	public String getEmail() {
@@ -768,7 +773,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置E-mail
-	 * 
+	 *
 	 * @param email
 	 *            E-mail
 	 */
@@ -778,7 +783,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取备案编号
-	 * 
+	 *
 	 * @return 备案编号
 	 */
 	public String getCerttext() {
@@ -787,7 +792,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置备案编号
-	 * 
+	 *
 	 * @param certtext
 	 *            备案编号
 	 */
@@ -797,7 +802,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取商品图片(大)宽度
-	 * 
+	 *
 	 * @return 商品图片(大)宽度
 	 */
 	public Integer getLargeProductImageWidth() {
@@ -806,7 +811,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置商品图片(大)宽度
-	 * 
+	 *
 	 * @param largeProductImageWidth
 	 *            商品图片(大)宽度
 	 */
@@ -816,7 +821,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取商品图片(大)高度
-	 * 
+	 *
 	 * @return 商品图片(大)高度
 	 */
 	public Integer getLargeProductImageHeight() {
@@ -825,7 +830,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置商品图片(大)高度
-	 * 
+	 *
 	 * @param largeProductImageHeight
 	 *            商品图片(大)高度
 	 */
@@ -835,7 +840,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取商品图片(中)宽度
-	 * 
+	 *
 	 * @return 商品图片(中)宽度
 	 */
 	public Integer getMediumProductImageWidth() {
@@ -844,7 +849,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置商品图片(中)宽度
-	 * 
+	 *
 	 * @param mediumProductImageWidth
 	 *            商品图片(中)宽度
 	 */
@@ -854,7 +859,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取商品图片(中)高度
-	 * 
+	 *
 	 * @return 商品图片(中)高度
 	 */
 	public Integer getMediumProductImageHeight() {
@@ -863,7 +868,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置商品图片(中)高度
-	 * 
+	 *
 	 * @param mediumProductImageHeight
 	 *            商品图片(中)高度
 	 */
@@ -873,7 +878,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取商品缩略图宽度
-	 * 
+	 *
 	 * @return 商品缩略图宽度
 	 */
 	public Integer getThumbnailProductImageWidth() {
@@ -882,7 +887,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置商品缩略图宽度
-	 * 
+	 *
 	 * @param thumbnailProductImageWidth
 	 *            商品缩略图宽度
 	 */
@@ -892,7 +897,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取商品缩略图高度
-	 * 
+	 *
 	 * @return 商品缩略图高度
 	 */
 	public Integer getThumbnailProductImageHeight() {
@@ -901,7 +906,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置商品缩略图高度
-	 * 
+	 *
 	 * @param thumbnailProductImageHeight
 	 *            商品缩略图高度
 	 */
@@ -911,7 +916,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取默认商品图片(大)
-	 * 
+	 *
 	 * @return 默认商品图片(大)
 	 */
 	public String getDefaultLargeProductImage() {
@@ -920,7 +925,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置默认商品图片(大)
-	 * 
+	 *
 	 * @param defaultLargeProductImage
 	 *            默认商品图片(大)
 	 */
@@ -930,7 +935,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取默认商品图片(小)
-	 * 
+	 *
 	 * @return 默认商品图片(小)
 	 */
 	public String getDefaultMediumProductImage() {
@@ -939,7 +944,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置默认商品图片(小)
-	 * 
+	 *
 	 * @param defaultMediumProductImage
 	 *            默认商品图片(小)
 	 */
@@ -949,7 +954,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取默认缩略图
-	 * 
+	 *
 	 * @return 默认缩略图
 	 */
 	public String getDefaultThumbnailProductImage() {
@@ -958,7 +963,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置默认缩略图
-	 * 
+	 *
 	 * @param defaultThumbnailProductImage
 	 *            默认缩略图
 	 */
@@ -968,7 +973,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取默认店铺logo
-	 * 
+	 *
 	 * @return 默认店铺logo
 	 */
 	public String getDefaultStoreLogo() {
@@ -977,7 +982,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置默认店铺logo
-	 * 
+	 *
 	 * @param defaultStoreLogo
 	 *            默认店铺logo
 	 */
@@ -987,7 +992,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取水印透明度
-	 * 
+	 *
 	 * @return 水印透明度
 	 */
 	public Integer getWatermarkAlpha() {
@@ -996,7 +1001,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置水印透明度
-	 * 
+	 *
 	 * @param watermarkAlpha
 	 *            水印透明度
 	 */
@@ -1006,7 +1011,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取水印图片
-	 * 
+	 *
 	 * @return 水印图片
 	 */
 	public String getWatermarkImage() {
@@ -1015,7 +1020,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置水印图片
-	 * 
+	 *
 	 * @param watermarkImage
 	 *            水印图片
 	 */
@@ -1025,7 +1030,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取水印位置
-	 * 
+	 *
 	 * @return 水印位置
 	 */
 	public WatermarkPosition getWatermarkPosition() {
@@ -1034,7 +1039,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置水印位置
-	 * 
+	 *
 	 * @param watermarkPosition
 	 *            水印位置
 	 */
@@ -1044,7 +1049,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取价格精确位数
-	 * 
+	 *
 	 * @return 价格精确位数
 	 */
 	public Integer getPriceScale() {
@@ -1053,7 +1058,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置价格精确位数
-	 * 
+	 *
 	 * @param priceScale
 	 *            价格精确位数
 	 */
@@ -1063,7 +1068,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取价格精确方式
-	 * 
+	 *
 	 * @return 价格精确方式
 	 */
 	public RoundType getPriceRoundType() {
@@ -1072,7 +1077,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置价格精确方式
-	 * 
+	 *
 	 * @param priceRoundType
 	 *            价格精确方式
 	 */
@@ -1082,7 +1087,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否前台显示市场价
-	 * 
+	 *
 	 * @return 是否前台显示市场价
 	 */
 	public Boolean getIsShowMarketPrice() {
@@ -1091,7 +1096,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否前台显示市场价
-	 * 
+	 *
 	 * @param isShowMarketPrice
 	 *            是否前台显示市场价
 	 */
@@ -1101,7 +1106,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取默认市场价换算比例
-	 * 
+	 *
 	 * @return 默认市场价换算比例
 	 */
 	public Double getDefaultMarketPriceScale() {
@@ -1110,7 +1115,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置默认市场价换算比例
-	 * 
+	 *
 	 * @param defaultMarketPriceScale
 	 *            默认市场价换算比例
 	 */
@@ -1120,7 +1125,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许注册类型
-	 * 
+	 *
 	 * @return 允许注册类型
 	 */
 
@@ -1130,7 +1135,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置允许注册类型
-	 * 
+	 *
 	 * @param allowedRegisterTypes
 	 *            允许注册类型
 	 */
@@ -1140,7 +1145,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取注册初始积分
-	 * 
+	 *
 	 * @return 注册初始积分
 	 */
 	public Long getRegisterPoint() {
@@ -1149,7 +1154,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置注册初始积分
-	 * 
+	 *
 	 * @param registerPoint
 	 *            注册初始积分
 	 */
@@ -1159,7 +1164,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取验证码类型
-	 * 
+	 *
 	 * @return 验证码类型
 	 */
 	public CaptchaType[] getCaptchaTypes() {
@@ -1168,7 +1173,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置验证码类型
-	 * 
+	 *
 	 * @param captchaTypes
 	 *            验证码类型
 	 */
@@ -1178,7 +1183,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取最大登录失败尝试次数
-	 * 
+	 *
 	 * @return 最大登录失败尝试次数
 	 */
 	public Integer getMaxFailedLoginAttempts() {
@@ -1187,7 +1192,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置最大登录失败尝试次数
-	 * 
+	 *
 	 * @param maxFailedLoginAttempts
 	 *            最大登录失败尝试次数
 	 */
@@ -1197,7 +1202,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取密码锁定时间
-	 * 
+	 *
 	 * @return 密码锁定时间
 	 */
 	public Integer getPasswordLockTime() {
@@ -1206,7 +1211,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置密码锁定时间
-	 * 
+	 *
 	 * @param passwordLockTime
 	 *            密码锁定时间
 	 */
@@ -1216,7 +1221,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取安全密匙有效时间
-	 * 
+	 *
 	 * @return 安全密匙有效时间
 	 */
 	public Integer getSafeKeyExpiryTime() {
@@ -1225,7 +1230,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置安全密匙有效时间
-	 * 
+	 *
 	 * @param safeKeyExpiryTime
 	 *            安全密匙有效时间
 	 */
@@ -1235,7 +1240,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取上传文件最大限制
-	 * 
+	 *
 	 * @return 上传文件最大限制
 	 */
 	public Integer getUploadMaxSize() {
@@ -1244,7 +1249,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置上传文件最大限制
-	 * 
+	 *
 	 * @param uploadMaxSize
 	 *            上传文件最大限制
 	 */
@@ -1254,7 +1259,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许上传图片扩展名
-	 * 
+	 *
 	 * @return 允许上传图片扩展名
 	 */
 	public String getUploadImageExtension() {
@@ -1263,7 +1268,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置允许上传图片扩展名
-	 * 
+	 *
 	 * @param uploadImageExtension
 	 *            允许上传图片扩展名
 	 */
@@ -1276,7 +1281,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许上传媒体扩展名
-	 * 
+	 *
 	 * @return 允许上传媒体扩展名
 	 */
 	public String getUploadMediaExtension() {
@@ -1285,7 +1290,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置允许上传媒体扩展名
-	 * 
+	 *
 	 * @param uploadMediaExtension
 	 *            允许上传媒体扩展名
 	 */
@@ -1298,7 +1303,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许上传文件扩展名
-	 * 
+	 *
 	 * @return 允许上传文件扩展名
 	 */
 	public String getUploadFileExtension() {
@@ -1307,7 +1312,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置允许上传文件扩展名
-	 * 
+	 *
 	 * @param uploadFileExtension
 	 *            允许上传文件扩展名
 	 */
@@ -1320,7 +1325,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取图片上传路径
-	 * 
+	 *
 	 * @return 图片上传路径
 	 */
 	public String getImageUploadPath() {
@@ -1329,7 +1334,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置图片上传路径
-	 * 
+	 *
 	 * @param imageUploadPath
 	 *            图片上传路径
 	 */
@@ -1347,7 +1352,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取媒体上传路径
-	 * 
+	 *
 	 * @return 媒体上传路径
 	 */
 	public String getMediaUploadPath() {
@@ -1356,7 +1361,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置媒体上传路径
-	 * 
+	 *
 	 * @param mediaUploadPath
 	 *            媒体上传路径
 	 */
@@ -1374,7 +1379,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取文件上传路径
-	 * 
+	 *
 	 * @return 文件上传路径
 	 */
 	public String getFileUploadPath() {
@@ -1383,7 +1388,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置文件上传路径
-	 * 
+	 *
 	 * @param fileUploadPath
 	 *            文件上传路径
 	 */
@@ -1401,7 +1406,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取SMTP服务器地址
-	 * 
+	 *
 	 * @return SMTP服务器地址
 	 */
 	public String getSmtpHost() {
@@ -1410,7 +1415,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置SMTP服务器地址
-	 * 
+	 *
 	 * @param smtpHost
 	 *            SMTP服务器地址
 	 */
@@ -1420,7 +1425,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取SMTP服务器端口
-	 * 
+	 *
 	 * @return SMTP服务器端口
 	 */
 	public Integer getSmtpPort() {
@@ -1429,7 +1434,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置SMTP服务器端口
-	 * 
+	 *
 	 * @param smtpPort
 	 *            SMTP服务器端口
 	 */
@@ -1439,7 +1444,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取SMTP用户名
-	 * 
+	 *
 	 * @return SMTP用户名
 	 */
 	public String getSmtpUsername() {
@@ -1448,7 +1453,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置SMTP用户名
-	 * 
+	 *
 	 * @param smtpUsername
 	 *            SMTP用户名
 	 */
@@ -1458,7 +1463,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取SMTP密码
-	 * 
+	 *
 	 * @return SMTP密码
 	 */
 	public String getSmtpPassword() {
@@ -1467,7 +1472,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置SMTP密码
-	 * 
+	 *
 	 * @param smtpPassword
 	 *            SMTP密码
 	 */
@@ -1477,7 +1482,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取SMTP是否启用SSL
-	 * 
+	 *
 	 * @return SMTP是否启用SSL
 	 */
 	public Boolean getSmtpSSLEnabled() {
@@ -1486,7 +1491,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置SMTP是否启用SSL
-	 * 
+	 *
 	 * @param smtpSSLEnabled
 	 *            SMTP是否启用SSL
 	 */
@@ -1496,7 +1501,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取发件人邮箱
-	 * 
+	 *
 	 * @return 发件人邮箱
 	 */
 	public String getSmtpFromMail() {
@@ -1505,7 +1510,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置发件人邮箱
-	 * 
+	 *
 	 * @param smtpFromMail
 	 *            发件人邮箱
 	 */
@@ -1515,7 +1520,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取货币符号
-	 * 
+	 *
 	 * @return 货币符号
 	 */
 	public String getCurrencySign() {
@@ -1524,7 +1529,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置货币符号
-	 * 
+	 *
 	 * @param currencySign
 	 *            货币符号
 	 */
@@ -1534,7 +1539,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取货币单位
-	 * 
+	 *
 	 * @return 货币单位
 	 */
 	public String getCurrencyUnit() {
@@ -1543,7 +1548,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置货币单位
-	 * 
+	 *
 	 * @param currencyUnit
 	 *            货币单位
 	 */
@@ -1553,7 +1558,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取库存警告数
-	 * 
+	 *
 	 * @return 库存警告数
 	 */
 	public Integer getStockAlertCount() {
@@ -1562,7 +1567,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置库存警告数
-	 * 
+	 *
 	 * @param stockAlertCount
 	 *            库存警告数
 	 */
@@ -1572,7 +1577,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取自动收货时间
-	 * 
+	 *
 	 * @return 自动收货时间
 	 */
 	public Integer getAutomaticReceiveTime() {
@@ -1581,7 +1586,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置自动收货时间
-	 * 
+	 *
 	 * @param automaticReceiveTime
 	 *            自动收货时间
 	 */
@@ -1591,7 +1596,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取库存分配时间点
-	 * 
+	 *
 	 * @return 库存分配时间点
 	 */
 	public StockAllocationTime getStockAllocationTime() {
@@ -1600,7 +1605,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置库存分配时间点
-	 * 
+	 *
 	 * @param stockAllocationTime
 	 *            库存分配时间点
 	 */
@@ -1610,7 +1615,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取默认积分换算比例
-	 * 
+	 *
 	 * @return 默认积分换算比例
 	 */
 	public Double getDefaultPointScale() {
@@ -1619,7 +1624,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置默认积分换算比例
-	 * 
+	 *
 	 * @param defaultPointScale
 	 *            默认积分换算比例
 	 */
@@ -1629,7 +1634,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 最大积分换算比例
-	 * 
+	 *
 	 * @return 最大积分换算比例
 	 */
 	public Double getMaxPointScale() {
@@ -1638,7 +1643,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置最大积分换算比例
-	 * 
+	 *
 	 * @param maxPointScale
 	 *            最大积分换算比例
 	 */
@@ -1648,7 +1653,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否开启开发模式
-	 * 
+	 *
 	 * @return 是否开启开发模式
 	 */
 	public Boolean getIsDevelopmentEnabled() {
@@ -1657,7 +1662,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否开启开发模式
-	 * 
+	 *
 	 * @param isDevelopmentEnabled
 	 *            是否开启开发模式
 	 */
@@ -1667,7 +1672,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否开启评论
-	 * 
+	 *
 	 * @return 是否开启评论
 	 */
 	public Boolean getIsReviewEnabled() {
@@ -1676,7 +1681,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否开启评论
-	 * 
+	 *
 	 * @param isReviewEnabled
 	 *            是否开启评论
 	 */
@@ -1686,7 +1691,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否审核评论
-	 * 
+	 *
 	 * @return 是否审核评论
 	 */
 	public Boolean getIsReviewCheck() {
@@ -1695,7 +1700,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否审核评论
-	 * 
+	 *
 	 * @param isReviewCheck
 	 *            是否审核评论
 	 */
@@ -1705,7 +1710,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否开启咨询
-	 * 
+	 *
 	 * @return 是否开启咨询
 	 */
 	public Boolean getIsConsultationEnabled() {
@@ -1714,7 +1719,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否开启咨询
-	 * 
+	 *
 	 * @param isConsultationEnabled
 	 *            是否开启咨询
 	 */
@@ -1724,7 +1729,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否审核咨询
-	 * 
+	 *
 	 * @return 是否审核咨询
 	 */
 	public Boolean getIsConsultationCheck() {
@@ -1733,7 +1738,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否审核咨询
-	 * 
+	 *
 	 * @param isConsultationCheck
 	 *            是否审核咨询
 	 */
@@ -1743,7 +1748,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否开启发票功能
-	 * 
+	 *
 	 * @return 是否开启发票功能
 	 */
 	public Boolean getIsInvoiceEnabled() {
@@ -1752,7 +1757,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否开启发票功能
-	 * 
+	 *
 	 * @param isInvoiceEnabled
 	 *            是否开启发票功能
 	 */
@@ -1762,7 +1767,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否开启含税价
-	 * 
+	 *
 	 * @return 是否开启含税价
 	 */
 	public Boolean getIsTaxPriceEnabled() {
@@ -1771,7 +1776,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否开启含税价
-	 * 
+	 *
 	 * @param isTaxPriceEnabled
 	 *            是否开启含税价
 	 */
@@ -1781,7 +1786,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取税率
-	 * 
+	 *
 	 * @return 税率
 	 */
 	public Double getTaxRate() {
@@ -1790,7 +1795,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置税率
-	 * 
+	 *
 	 * @param taxRate
 	 *            税率
 	 */
@@ -1800,7 +1805,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取Cookie路径
-	 * 
+	 *
 	 * @return Cookie路径
 	 */
 	public String getCookiePath() {
@@ -1809,7 +1814,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置Cookie路径
-	 * 
+	 *
 	 * @param cookiePath
 	 *            Cookie路径
 	 */
@@ -1822,7 +1827,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取Cookie作用域
-	 * 
+	 *
 	 * @return Cookie作用域
 	 */
 	public String getCookieDomain() {
@@ -1831,7 +1836,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置Cookie作用域
-	 * 
+	 *
 	 * @param cookieDomain
 	 *            Cookie作用域
 	 */
@@ -1841,7 +1846,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取快递100授权KEY
-	 * 
+	 *
 	 * @return 快递100授权KEY
 	 */
 	public String getKuaidi100Key() {
@@ -1850,7 +1855,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置快递100授权KEY
-	 * 
+	 *
 	 * @param kuaidi100Key
 	 *            快递100授权KEY
 	 */
@@ -1860,7 +1865,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取是否开启CNZZ统计
-	 * 
+	 *
 	 * @return 是否开启CNZZ统计
 	 */
 	public Boolean getIsCnzzEnabled() {
@@ -1869,7 +1874,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置是否开启CNZZ统计
-	 * 
+	 *
 	 * @param isCnzzEnabled
 	 *            是否开启CNZZ统计
 	 */
@@ -1879,7 +1884,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取CNZZ统计站点ID
-	 * 
+	 *
 	 * @return CNZZ统计站点ID
 	 */
 	public String getCnzzSiteId() {
@@ -1888,7 +1893,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置CNZZ统计站点ID
-	 * 
+	 *
 	 * @param cnzzSiteId
 	 *            CNZZ统计站点ID
 	 */
@@ -1898,7 +1903,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取CNZZ统计密码
-	 * 
+	 *
 	 * @return CNZZ统计密码
 	 */
 	public String getCnzzPassword() {
@@ -1907,7 +1912,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置CNZZ统计密码
-	 * 
+	 *
 	 * @param cnzzPassword
 	 *            CNZZ统计密码
 	 */
@@ -1917,7 +1922,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取短信服务序列号
-	 * 
+	 *
 	 * @return 短信服务序列号
 	 */
 	public String getSmsSn() {
@@ -1926,7 +1931,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置短信服务序列号
-	 * 
+	 *
 	 * @param smsSn
 	 *            短信服务序列号
 	 */
@@ -1936,7 +1941,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取短信服务密钥
-	 * 
+	 *
 	 * @return 短信服务密钥
 	 */
 	public String getSmsKey() {
@@ -1945,7 +1950,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置短信服务密钥
-	 * 
+	 *
 	 * @param smsKey
 	 *            短信服务密钥
 	 */
@@ -1955,7 +1960,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取区域设置
-	 * 
+	 *
 	 * @return 区域设置
 	 */
 	public Locale getLocale() {
@@ -1964,7 +1969,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置区域设置
-	 * 
+	 *
 	 * @param locale
 	 *            区域设置
 	 */
@@ -1981,9 +1986,17 @@ public class Setting implements Serializable {
 		this.defaultPassword = defaultPassword;
 	}
 
-	/**
+  public Integer getCodeNoLength() {
+    return codeNoLength;
+  }
+
+  public void setCodeNoLength(Integer codeNoLength) {
+    this.codeNoLength = codeNoLength;
+  }
+
+  /**
 	 * 获取热门搜索关键词
-	 * 
+	 *
 	 * @return 热门搜索关键词
 	 */
 	public String[] getHotSearches() {
@@ -1992,7 +2005,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许上传图片扩展名
-	 * 
+	 *
 	 * @return 允许上传图片扩展名
 	 */
 	public String[] getUploadImageExtensions() {
@@ -2001,7 +2014,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许上传媒体扩展名
-	 * 
+	 *
 	 * @return 允许上传媒体扩展名
 	 */
 	public String[] getUploadMediaExtensions() {
@@ -2010,7 +2023,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 获取允许上传文件扩展名
-	 * 
+	 *
 	 * @return 允许上传文件扩展名
 	 */
 	public String[] getUploadFileExtensions() {
@@ -2019,7 +2032,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 设置精度
-	 * 
+	 *
 	 * @param amount
 	 *            数值
 	 * @return 数值
@@ -2042,7 +2055,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 解析图片上传路径
-	 * 
+	 *
 	 * @return 图片上传路径
 	 */
 	public String resolveImageUploadPath() {
@@ -2051,7 +2064,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 解析图片上传路径
-	 * 
+	 *
 	 * @param model
 	 *            数据
 	 * @return 图片上传路径
@@ -2068,7 +2081,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 解析媒体上传路径
-	 * 
+	 *
 	 * @return 媒体上传路径
 	 */
 	public String resolveMediaUploadPath() {
@@ -2077,7 +2090,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 解析媒体上传路径
-	 * 
+	 *
 	 * @param model
 	 *            数据
 	 * @return 媒体上传路径
@@ -2094,7 +2107,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 解析文件上传路径
-	 * 
+	 *
 	 * @return 文件上传路径
 	 */
 	public String resolveFileUploadPath() {
@@ -2103,7 +2116,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 解析文件上传路径
-	 * 
+	 *
 	 * @param model
 	 *            数据
 	 * @return 文件上传路径
@@ -2120,7 +2133,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 重写equals方法
-	 * 
+	 *
 	 * @param obj
 	 *            对象
 	 * @return 是否相等
@@ -2132,7 +2145,7 @@ public class Setting implements Serializable {
 
 	/**
 	 * 重写hashCode方法
-	 * 
+	 *
 	 * @return HashCode
 	 */
 	@Override

@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * Entity - 角色
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -29,7 +29,7 @@ public class Role extends BaseEntity<Long> {
 	@NotEmpty
 	@Length(max = 200)
 	@Column(nullable = false)
-	@JsonView({ListAll.class,ListView.class,EditView.class})
+	@JsonView({TreeView.class,ListView.class,EditView.class})
 	private String name;
 
 	/**
@@ -71,7 +71,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 获取名称
-	 * 
+	 *
 	 * @return 名称
 	 */
 	public String getName() {
@@ -80,7 +80,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 设置名称
-	 * 
+	 *
 	 * @param name
 	 *            名称
 	 */
@@ -90,7 +90,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 获取是否内置
-	 * 
+	 *
 	 * @return 是否内置
 	 */
 	public Boolean getIsSystem() {
@@ -99,7 +99,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 设置是否内置
-	 * 
+	 *
 	 * @param isSystem
 	 *            是否内置
 	 */
@@ -109,7 +109,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 获取描述
-	 * 
+	 *
 	 * @return 描述
 	 */
 	public String getDescription() {
@@ -118,7 +118,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 设置描述
-	 * 
+	 *
 	 * @param description
 	 *            描述
 	 */
@@ -128,7 +128,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 获取权限
-	 * 
+	 *
 	 * @return 权限
 	 */
 	public Set<Permission> getPermissions() {
@@ -137,7 +137,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 设置权限
-	 * 
+	 *
 	 * @param permissions
 	 *            权限
 	 */
@@ -147,7 +147,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 获取管理员
-	 * 
+	 *
 	 * @return 管理员
 	 */
 	public Set<Admin> getAdmins() {
@@ -156,7 +156,7 @@ public class Role extends BaseEntity<Long> {
 
 	/**
 	 * 设置管理员
-	 * 
+	 *
 	 * @param admins
 	 *            管理员
 	 */
@@ -207,10 +207,5 @@ public class Role extends BaseEntity<Long> {
 		}
 		return urls;
 	}
-
-
-	public interface ListAll extends IdView{}
-	public interface ListView extends BaseView{}
-	public interface EditView extends IdView{}
 
 }

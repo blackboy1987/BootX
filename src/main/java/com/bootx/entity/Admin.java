@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  * Entity - 管理员
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -37,6 +37,11 @@ public class Admin extends User {
 	@Column(nullable = false, updatable = false, unique = true)
 	@JsonView({ListView.class,EditView.class})
 	private String username;
+
+  @NotEmpty(groups = Save.class)
+  @Column(nullable = false, updatable = false, unique = true)
+  @JsonView({ListView.class,EditView.class})
+	private String cardNo;
 
 	/**
 	 * 密码
@@ -69,6 +74,13 @@ public class Admin extends User {
 	@JsonView({ListView.class,EditView.class})
 	private String name;
 
+  /**
+   * 姓名
+   */
+  @Length(max = 200)
+  @JsonView({ListView.class,EditView.class})
+  private String mobile;
+
 	/**
 	 * 部门
 	 */
@@ -84,7 +96,7 @@ public class Admin extends User {
 
 	/**
 	 * 获取用户名
-	 * 
+	 *
 	 * @return 用户名
 	 */
 	public String getUsername() {
@@ -93,7 +105,7 @@ public class Admin extends User {
 
 	/**
 	 * 设置用户名
-	 * 
+	 *
 	 * @param username
 	 *            用户名
 	 */
@@ -101,9 +113,25 @@ public class Admin extends User {
 		this.username = username;
 	}
 
-	/**
+  public String getMobile() {
+    return mobile;
+  }
+
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
+  }
+
+  public String getCardNo() {
+    return cardNo;
+  }
+
+  public void setCardNo(String cardNo) {
+    this.cardNo = cardNo;
+  }
+
+  /**
 	 * 获取密码
-	 * 
+	 *
 	 * @return 密码
 	 */
 	public String getPassword() {
@@ -112,7 +140,7 @@ public class Admin extends User {
 
 	/**
 	 * 设置密码
-	 * 
+	 *
 	 * @param password
 	 *            密码
 	 */
@@ -125,7 +153,7 @@ public class Admin extends User {
 
 	/**
 	 * 获取加密密码
-	 * 
+	 *
 	 * @return 加密密码
 	 */
 	public String getEncodedPassword() {
@@ -134,7 +162,7 @@ public class Admin extends User {
 
 	/**
 	 * 设置加密密码
-	 * 
+	 *
 	 * @param encodedPassword
 	 *            加密密码
 	 */
@@ -144,7 +172,7 @@ public class Admin extends User {
 
 	/**
 	 * 获取E-mail
-	 * 
+	 *
 	 * @return E-mail
 	 */
 	public String getEmail() {
@@ -153,7 +181,7 @@ public class Admin extends User {
 
 	/**
 	 * 设置E-mail
-	 * 
+	 *
 	 * @param email
 	 *            E-mail
 	 */
@@ -163,7 +191,7 @@ public class Admin extends User {
 
 	/**
 	 * 获取姓名
-	 * 
+	 *
 	 * @return 姓名
 	 */
 	public String getName() {
@@ -172,7 +200,7 @@ public class Admin extends User {
 
 	/**
 	 * 设置姓名
-	 * 
+	 *
 	 * @param name
 	 *            姓名
 	 */
@@ -190,7 +218,7 @@ public class Admin extends User {
 
 	/**
 	 * 获取角色
-	 * 
+	 *
 	 * @return 角色
 	 */
 	public Set<Role> getRoles() {
@@ -199,7 +227,7 @@ public class Admin extends User {
 
 	/**
 	 * 设置角色
-	 * 
+	 *
 	 * @param roles
 	 *            角色
 	 */

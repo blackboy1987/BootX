@@ -102,6 +102,12 @@ public class DepartmentController extends BaseController {
 				if (department != null && CollectionUtils.isNotEmpty(department.getAdmins())) {
 					return Message.error("删除失败");
 				}
+        if (department != null && CollectionUtils.isNotEmpty(department.getRoles())) {
+          return Message.error("删除失败");
+        }
+        if (department != null && CollectionUtils.isNotEmpty(department.getChildren())) {
+          return Message.error("删除失败");
+        }
 			}
 			departmentService.delete(ids);
 		}

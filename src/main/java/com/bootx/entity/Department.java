@@ -12,6 +12,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Entity - 部门
+ *
+ * @author blackboy
+ * @version 1.0
+ */
 @Entity
 @Table(name = "bootx_department")
 public class Department extends OrderedEntity<Long> {
@@ -65,12 +71,12 @@ public class Department extends OrderedEntity<Long> {
 	 */
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	@OrderBy("order asc")
-	@JsonView({TreeView.class})
+	@JsonView({ListView.class,TreeView.class})
 	private Set<Department> children = new HashSet<>();
 
 	/**
 	 * 获取名称
-	 * 
+	 *
 	 * @return 名称
 	 */
 	public String getName() {
@@ -79,7 +85,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 设置名称
-	 * 
+	 *
 	 * @param name
 	 *            名称
 	 */
@@ -89,7 +95,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 获取树路径
-	 * 
+	 *
 	 * @return 树路径
 	 */
 	public String getTreePath() {
@@ -98,7 +104,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 设置树路径
-	 * 
+	 *
 	 * @param treePath
 	 *            树路径
 	 */
@@ -108,7 +114,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 获取层级
-	 * 
+	 *
 	 * @return 层级
 	 */
 	public Integer getGrade() {
@@ -117,7 +123,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 设置层级
-	 * 
+	 *
 	 * @param grade
 	 *            层级
 	 */
@@ -127,7 +133,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 获取上级部门
-	 * 
+	 *
 	 * @return 上级部门
 	 */
 	public Department getParent() {
@@ -144,7 +150,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 设置上级部门
-	 * 
+	 *
 	 * @param parent
 	 *            上级部门
 	 */
@@ -154,7 +160,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 获取下级部门
-	 * 
+	 *
 	 * @return 下级部门
 	 */
 	public Set<Department> getChildren() {
@@ -163,7 +169,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 设置下级部门
-	 * 
+	 *
 	 * @param children
 	 *            下级部门
 	 */
@@ -190,7 +196,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 获取所有上级分类ID
-	 * 
+	 *
 	 * @return 所有上级分类ID
 	 */
 	@Transient
@@ -205,7 +211,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 获取所有上级部门
-	 * 
+	 *
 	 * @return 所有上级部门
 	 */
 	@Transient
@@ -217,7 +223,7 @@ public class Department extends OrderedEntity<Long> {
 
 	/**
 	 * 递归上级部门
-	 * 
+	 *
 	 * @param parents
 	 *            上级部门
 	 * @param menu
@@ -236,7 +242,6 @@ public class Department extends OrderedEntity<Long> {
 
 
 	@Transient
-	@JsonView({ListView.class})
 	public Long getParentId(){
 		if(parent!=null){
 			return parent.getId();
@@ -246,15 +251,10 @@ public class Department extends OrderedEntity<Long> {
 
 
 	@Transient
-	@JsonView({ListView.class})
 	public String getParentName(){
 		if(parent!=null){
 			return parent.getName();
 		}
 		return null;
 	}
-
-
-	public interface TreeView extends IdView{}
-	public interface ListView extends BaseView{}
 }

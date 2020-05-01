@@ -18,12 +18,12 @@ import java.util.List;
 
 /**
  * Controller - 部门
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminDepartmentController")
-@RequestMapping("/admin/api/department")
+@RequestMapping("/api/department")
 public class DepartmentController extends BaseController {
 
 	@Autowired
@@ -45,10 +45,10 @@ public class DepartmentController extends BaseController {
 			department.setTreePath(null);
 			department.setGrade(null);
 			department.setChildren(null);
-			department.setAdmins(new HashSet<>());
+			department.setAdmins(null);
 			departmentService.save(department);
 		}else{
-			departmentService.update(department,"children","admins");
+			departmentService.update(department,"children","admins","roles");
 		}
 
 		return Message.success("操作成功");
@@ -67,16 +67,11 @@ public class DepartmentController extends BaseController {
 	 */
 	@PostMapping("/list")
 	@JsonView(Department.ListView.class)
-	public Page<Department> list(Pageable pageable, Long parentId) {
-		pageable.setPageSize(5000);
-		List<Department> departments;
+	public List<Department> list(Long parentId) {
 		if(parentId==null){
-			departments = departmentService.findRoots();
-		}else {
-			departments = departmentService.findChildren(departmentService.find(parentId),false,null);
+			return departmentService.findRoots();
 		}
-		return new Page(departments,departments.size(),pageable);
-
+		return departmentService.findChildren(departmentService.find(parentId),false,null);
 	}
 
 	/**

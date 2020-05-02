@@ -1,7 +1,10 @@
 
 package com.bootx.service.impl;
 
+import com.bootx.common.Page;
+import com.bootx.common.Pageable;
 import com.bootx.dao.PermissionDao;
+import com.bootx.entity.Menu;
 import com.bootx.entity.Permission;
 import com.bootx.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +69,8 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission, Long> imp
 		return permissionsDao.exists(permission.getName(),permission.getMenu(),permission.getId());
 	}
 
+  @Override
+  public Page<Permission> findPage(Pageable pageable, Menu menu) {
+    return permissionsDao.findPage(pageable,menu);
+  }
 }

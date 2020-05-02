@@ -15,13 +15,13 @@ import java.util.Set;
 
 /**
  * Entity - 权限
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @Entity
 @Table(name = "bootx_permission")
-public class Permission extends OrderedEntity<Long> {
+public class Permission extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 5095521437302782717L;
 
@@ -68,9 +68,19 @@ public class Permission extends OrderedEntity<Long> {
 	@ManyToMany(mappedBy = "permissions", fetch = FetchType.LAZY)
 	private Set<Role> roles = new HashSet<>();
 
+  /**
+   * 权限类型
+   * 0：按钮权限
+   * 1：接口权限
+   * 2：数据权限
+   */
+	@NotNull
+  @Column(nullable = false,columnDefinition = "int(4) default 0")
+	private Integer type;
+
 	/**
 	 * 获取名称
-	 * 
+	 *
 	 * @return 名称
 	 */
 	public String getName() {
@@ -79,7 +89,7 @@ public class Permission extends OrderedEntity<Long> {
 
 	/**
 	 * 设置名称
-	 * 
+	 *
 	 * @param name
 	 *            名称
 	 */
@@ -135,7 +145,15 @@ public class Permission extends OrderedEntity<Long> {
 		this.urls = urls;
 	}
 
-	@Transient
+  public Integer getType() {
+    return type;
+  }
+
+  public void setType(Integer type) {
+    this.type = type;
+  }
+
+  @Transient
 	@JsonView({ListView.class})
 	public String getMenuName(){
 		if(menu!=null){

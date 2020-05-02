@@ -25,12 +25,12 @@ import java.util.Map;
 
 /**
  * Controller - 权限
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminPermissionController")
-@RequestMapping("/admin/api/permission")
+@RequestMapping("/api/permission")
 public class PermissionController extends BaseController {
 
 	@Autowired
@@ -143,7 +143,7 @@ public class PermissionController extends BaseController {
 	@PostMapping("/list")
 	@JsonView(Permission.ListView.class)
 	public Page<Permission> list(Pageable pageable,Long menuId) {
-		return permissionService.findPage(pageable);
+		return permissionService.findPage(pageable,menuService.find(menuId));
 	}
 
 	/**

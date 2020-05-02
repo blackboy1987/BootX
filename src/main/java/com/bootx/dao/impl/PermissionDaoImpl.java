@@ -1,16 +1,22 @@
 
 package com.bootx.dao.impl;
 
+import com.bootx.common.Page;
+import com.bootx.common.Pageable;
 import com.bootx.dao.PermissionDao;
 import com.bootx.entity.Menu;
 import com.bootx.entity.Permission;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  * Dao - 权限
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -38,4 +44,18 @@ public class PermissionDaoImpl extends BaseDaoImpl<Permission, Long> implements 
 		TypedQuery<Permission> query = entityManager.createQuery(jpql, Permission.class).setParameter("name", name).setParameter("menu",menu).setParameter("id",id);
 		return query.getResultList().size()>0;
 	}
+
+  @Override
+  public Page<Permission> findPage(Pageable pageable, Menu menu) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<Permission> criteriaQuery = criteriaBuilder.createQuery(Permission.class);
+    Root<Permission> root = criteriaQuery.from(Permission.class);
+    criteriaQuery.select(root);
+    Predicate restrictions = criteriaBuilder.conjunction();
+    if (menu!=null) {
+      restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("menu"), menu));
+    }
+    criteriaQuery.where(restrictions);
+    return super.findPage(criteriaQuery, pageable);
+  }
 }

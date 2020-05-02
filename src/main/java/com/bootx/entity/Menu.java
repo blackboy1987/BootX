@@ -36,7 +36,7 @@ public class Menu extends OrderedEntity<Long> {
 	@NotEmpty
 	@Length(max = 200)
 	@Column(nullable = false)
-	@JsonView({ListView.class,TreeView.class})
+	@JsonView({ListView.class,TreeView.class,PermissionView.class})
 	private String name;
 
 	/**
@@ -65,13 +65,14 @@ public class Menu extends OrderedEntity<Long> {
 	 */
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	@OrderBy("order asc")
-	@JsonView({TreeView.class})
+	@JsonView({TreeView.class,PermissionView.class})
 	private Set<Menu> children = new HashSet<>();
 
 	/**
 	 * 权限
 	 */
 	@OneToMany(mappedBy = "menu",fetch = FetchType.LAZY)
+  @JsonView({PermissionView.class})
 	private Set<Permission> permissions = new HashSet<>();
 
 	/**
@@ -336,6 +337,6 @@ public class Menu extends OrderedEntity<Long> {
 	}
 
 	public interface ListView extends BaseView {}
-
+  public interface PermissionView extends TreeView{}
 	public interface TreeView extends IdView{}
 }

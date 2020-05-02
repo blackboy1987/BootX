@@ -1,13 +1,15 @@
 
 package com.bootx.service;
 
+import com.bootx.common.Page;
+import com.bootx.common.Pageable;
 import com.bootx.entity.Menu;
 
 import java.util.List;
 
 /**
  * Service - 菜单
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -15,14 +17,14 @@ public interface MenuService extends BaseService<Menu, Long> {
 
 	/**
 	 * 查找顶级菜单
-	 * 
+	 *
 	 * @return 顶级菜单
 	 */
 	List<Menu> findRoots();
 
 	/**
 	 * 查找顶级菜单
-	 * 
+	 *
 	 * @param count
 	 *            数量
 	 * @return 顶级菜单
@@ -31,7 +33,7 @@ public interface MenuService extends BaseService<Menu, Long> {
 
 	/**
 	 * 查找顶级菜单
-	 * 
+	 *
 	 * @param count
 	 *            数量
 	 * @param useCache
@@ -42,7 +44,7 @@ public interface MenuService extends BaseService<Menu, Long> {
 
 	/**
 	 * 查找上级菜单
-	 * 
+	 *
 	 * @param menu
 	 *            菜单
 	 * @param recursive
@@ -55,7 +57,7 @@ public interface MenuService extends BaseService<Menu, Long> {
 
 	/**
 	 * 查找上级菜单
-	 * 
+	 *
 	 * @param menuId
 	 *            商品分类ID
 	 * @param recursive
@@ -70,14 +72,14 @@ public interface MenuService extends BaseService<Menu, Long> {
 
 	/**
 	 * 查找菜单树
-	 * 
+	 *
 	 * @return 菜单树
 	 */
 	List<Menu> findTree();
 
 	/**
 	 * 查找下级菜单
-	 * 
+	 *
 	 * @param menu
 	 *            菜单
 	 * @param recursive
@@ -90,7 +92,7 @@ public interface MenuService extends BaseService<Menu, Long> {
 
 	/**
 	 * 查找下级菜单
-	 * 
+	 *
 	 * @param menuId
 	 *            商品分类ID
 	 * @param recursive
@@ -101,6 +103,7 @@ public interface MenuService extends BaseService<Menu, Long> {
 	 *            是否使用缓存
 	 * @return 下级菜单
 	 */
-	List<Menu> findChildren(Long menu, boolean recursive, Integer count, boolean useCache);
+	List<Menu> findChildren(Long menuId, boolean recursive, Integer count, boolean useCache);
+  Page<Menu> findPage(Menu parent, Pageable pageable);
 
 }

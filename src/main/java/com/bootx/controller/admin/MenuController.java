@@ -1,12 +1,12 @@
 
 package com.bootx.controller.admin;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.bootx.common.Message;
 import com.bootx.common.Page;
 import com.bootx.common.Pageable;
 import com.bootx.entity.Menu;
 import com.bootx.service.MenuService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ import java.util.List;
 
 /**
  * Controller - 菜单
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminMenuController")
-@RequestMapping("/admin/api/menu")
+@RequestMapping("/api/menu")
 public class MenuController extends BaseController {
 
 	@Autowired
@@ -77,15 +77,7 @@ public class MenuController extends BaseController {
 	@PostMapping("/list")
 	@JsonView(Menu.ListView.class)
 	public Page<Menu> list(Pageable pageable,Long parentId) {
-		pageable.setPageSize(5000);
-		List<Menu> menus;
-		if(parentId==null){
-			menus = menuService.findRoots();
-		}else {
-			menus = menuService.findChildren(menuService.find(parentId),false,null);
-		}
-		return new Page(menus,menus.size(),pageable);
-
+    return menuService.findPage(menuService.find(parentId),pageable);
 	}
 
 

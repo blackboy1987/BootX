@@ -1,6 +1,8 @@
 
 package com.bootx.service.impl;
 
+import com.bootx.common.Page;
+import com.bootx.common.Pageable;
 import com.bootx.dao.MenuDao;
 import com.bootx.entity.Menu;
 import com.bootx.service.MenuService;
@@ -16,7 +18,7 @@ import java.util.List;
 
 /**
  * Service - 菜单
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -139,7 +141,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, Long> implements Menu
 
 	/**
 	 * 设置值
-	 * 
+	 *
 	 * @param menu
 	 *            菜单
 	 */
@@ -156,4 +158,8 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu, Long> implements Menu
 		menu.setGrade(menu.getParentIds().length);
 	}
 
+  @Override
+  public Page<Menu> findPage(Menu parent, Pageable pageable) {
+    return menuDao.findPage(parent,pageable);
+  }
 }

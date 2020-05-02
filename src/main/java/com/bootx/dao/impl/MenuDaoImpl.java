@@ -1,6 +1,8 @@
 
 package com.bootx.dao.impl;
 
+import com.bootx.common.Page;
+import com.bootx.common.Pageable;
 import com.bootx.dao.MenuDao;
 import com.bootx.entity.Menu;
 import org.apache.commons.collections.CollectionUtils;
@@ -9,11 +11,15 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.*;
 
 /**
  * Dao - 菜单
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -79,7 +85,7 @@ public class MenuDaoImpl extends BaseDaoImpl<Menu, Long> implements MenuDao {
 
 	/**
 	 * 排序菜单
-	 * 
+	 *
 	 * @param menus
 	 *            菜单
 	 */
@@ -114,4 +120,17 @@ public class MenuDaoImpl extends BaseDaoImpl<Menu, Long> implements MenuDao {
 		});
 	}
 
+  @Override
+  public Page<Menu> findPage(Menu parent, Pageable pageable) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<Menu> criteriaQuery = criteriaBuilder.createQuery(Menu.class);
+    Root<Menu> root = criteriaQuery.from(Menu.class);
+    criteriaQuery.select(root);
+    Predicate restrictions = criteriaBuilder.conjunction();
+    if (parent!=null) {
+      restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("parent"), parent));
+    }
+    criteriaQuery.where(restrictions);
+    return super.findPage(criteriaQuery, pageable);
+  }
 }

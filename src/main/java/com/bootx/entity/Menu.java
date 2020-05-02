@@ -14,7 +14,7 @@ import java.util.Set;
 
 /**
  * Entity - 菜单
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -88,9 +88,16 @@ public class Menu extends OrderedEntity<Long> {
 	@JsonView({ListView.class})
 	private String permission;
 
+  @JsonView({ListView.class})
+	private String icon;
+
+  @JsonView({ListView.class})
+	private String target;
+
+
 	/**
 	 * 获取名称
-	 * 
+	 *
 	 * @return 名称
 	 */
 	public String getName() {
@@ -99,7 +106,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 设置名称
-	 * 
+	 *
 	 * @param name
 	 *            名称
 	 */
@@ -109,7 +116,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 获取树路径
-	 * 
+	 *
 	 * @return 树路径
 	 */
 	public String getTreePath() {
@@ -118,7 +125,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 设置树路径
-	 * 
+	 *
 	 * @param treePath
 	 *            树路径
 	 */
@@ -128,7 +135,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 获取层级
-	 * 
+	 *
 	 * @return 层级
 	 */
 	public Integer getGrade() {
@@ -137,7 +144,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 设置层级
-	 * 
+	 *
 	 * @param grade
 	 *            层级
 	 */
@@ -147,7 +154,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 获取上级菜单
-	 * 
+	 *
 	 * @return 上级菜单
 	 */
 	public Menu getParent() {
@@ -164,7 +171,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 设置上级菜单
-	 * 
+	 *
 	 * @param parent
 	 *            上级菜单
 	 */
@@ -174,7 +181,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 获取下级菜单
-	 * 
+	 *
 	 * @return 下级菜单
 	 */
 	public Set<Menu> getChildren() {
@@ -183,7 +190,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 设置下级菜单
-	 * 
+	 *
 	 * @param children
 	 *            下级菜单
 	 */
@@ -248,9 +255,25 @@ public class Menu extends OrderedEntity<Long> {
 		this.permission = permission;
 	}
 
-	/**
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  public String getTarget() {
+    return target;
+  }
+
+  public void setTarget(String target) {
+    this.target = target;
+  }
+
+  /**
 	 * 获取所有上级分类ID
-	 * 
+	 *
 	 * @return 所有上级分类ID
 	 */
 	@Transient
@@ -265,7 +288,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 获取所有上级菜单
-	 * 
+	 *
 	 * @return 所有上级菜单
 	 */
 	@Transient
@@ -277,7 +300,7 @@ public class Menu extends OrderedEntity<Long> {
 
 	/**
 	 * 递归上级菜单
-	 * 
+	 *
 	 * @param parents
 	 *            上级菜单
 	 * @param menu

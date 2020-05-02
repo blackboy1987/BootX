@@ -49,6 +49,7 @@ dependencies {
 
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
 
+  compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
 
 
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

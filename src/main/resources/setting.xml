@@ -73,57 +73,7 @@
 	<settingConfig name="locale" value="zh_CN"/>
 	<settingConfig name="defaultPassword" value="123456"/>
   <settingConfig name="codeNoLength" value="6"/>
-	<templateConfig id="header" type="page" name="头部" templatePath="shop/include/header.ftl"/>
-	<templateConfig id="footer" type="page" name="底部" templatePath="shop/include/footer.ftl"/>
-	<templateConfig id="login" type="page" name="登录" templatePath="shop/login/index.ftl"/>
-	<templateConfig id="register" type="page" name="注册" templatePath="shop/register/index.ftl"/>
-	<templateConfig id="index" type="page" name="首页" templatePath="shop/index.ftl"/>
-	<templateConfig id="articleList" type="page" name="文章列表" templatePath="shop/article/list.ftl"/>
-	<templateConfig id="articleSearch" type="page" name="文章搜索" templatePath="shop/article/search.ftl"/>
-	<templateConfig id="articleDetail" type="page" name="文章详情" templatePath="shop/article/detail.ftl"/>
-	<templateConfig id="productList" type="page" name="商品列表" templatePath="shop/product/list.ftl"/>
-	<templateConfig id="productSearch" type="page" name="商品搜索" templatePath="shop/product/search.ftl"/>
-	<templateConfig id="productDetail" type="page" name="商品详情" templatePath="shop/product/detail.ftl"/>
-	<templateConfig id="brandList" type="page" name="品牌列表" templatePath="shop/brand/list.ftl"/>
-	<templateConfig id="brandDetail" type="page" name="品牌详情" templatePath="shop/brand/detail.ftl"/>
-	<templateConfig id="promotionDetail" type="page" name="促销详情" templatePath="shop/promotion/detail.ftl"/>
-	<templateConfig id="productCategory" type="page" name="商品分类" templatePath="shop/product_category/index.ftl"/>
-	<templateConfig id="friendLink" type="page" name="友情链接" templatePath="shop/friend_link/index.ftl"/>
-	<templateConfig id="cart" type="page" name="购物车" templatePath="shop/cart/list.ftl"/>
-	<templateConfig id="orderPrint" type="print" name="订单打印" templatePath="admin/print/order.ftl"/>
-	<templateConfig id="productPrint" type="print" name="购物单打印" templatePath="admin/print/product.ftl"/>
-	<templateConfig id="shippingPrint" type="print" name="发货单打印" templatePath="admin/print/shipping.ftl"/>
-	<templateConfig id="testSmtpMail" type="mail" name="SMTP测试" templatePath="admin/mail/test_smtp.ftl"/>
-	<templateConfig id="forgotPasswordMail" type="mail" name="忘记密码" templatePath="shop/mail/forgot_password.ftl"/>
-	<templateConfig id="productNotifyMail" type="mail" name="到货通知" templatePath="shop/mail/product_notify.ftl"/>
-	<templateConfig id="registerMemberMail" type="mail" name="会员注册" templatePath="shop/mail/register_member.ftl"/>
-	<templateConfig id="createOrderMail" type="mail" name="订单创建" templatePath="shop/mail/create_order.ftl"/>
-	<templateConfig id="updateOrderMail" type="mail" name="订单更新" templatePath="shop/mail/update_order.ftl"/>
-	<templateConfig id="cancelOrderMail" type="mail" name="订单取消" templatePath="shop/mail/cancel_order.ftl"/>
-	<templateConfig id="reviewOrderMail" type="mail" name="订单审核" templatePath="shop/mail/review_order.ftl"/>
-	<templateConfig id="paymentOrderMail" type="mail" name="订单收款" templatePath="shop/mail/payment_order.ftl"/>
-	<templateConfig id="refundsOrderMail" type="mail" name="订单退款" templatePath="shop/mail/refunds_order.ftl"/>
-	<templateConfig id="shippingOrderMail" type="mail" name="订单发货" templatePath="shop/mail/shipping_order.ftl"/>
-	<templateConfig id="returnsOrderMail" type="mail" name="订单退货" templatePath="shop/mail/returns_order.ftl"/>
-	<templateConfig id="receiveOrderMail" type="mail" name="订单收货" templatePath="shop/mail/receive_order.ftl"/>
-	<templateConfig id="completeOrderMail" type="mail" name="订单完成" templatePath="shop/mail/complete_order.ftl"/>
-	<templateConfig id="failOrderMail" type="mail" name="订单失败" templatePath="shop/mail/fail_order.ftl"/>
-	<templateConfig id="registerBusinessMail" type="mail" name="商家注册" templatePath="shop/mail/register_business.ftl"/>
-	<templateConfig id="approvalStoreMail" type="mail" name="店铺审核成功" templatePath="shop/mail/approval_store.ftl"/>
-	<templateConfig id="failStoreMail" type="mail" name="店铺审核失败" templatePath="shop/mail/fail_store.ftl"/>
-	<templateConfig id="registerMemberSms" type="sms" name="会员注册" templatePath="shop/sms/register_member.ftl"/>
-	<templateConfig id="createOrderSms" type="sms" name="订单创建" templatePath="shop/sms/create_order.ftl"/>
-	<templateConfig id="updateOrderSms" type="sms" name="订单更新" templatePath="shop/sms/update_order.ftl"/>
-	<templateConfig id="cancelOrderSms" type="sms" name="订单取消" templatePath="shop/sms/cancel_order.ftl"/>
-	<templateConfig id="reviewOrderSms" type="sms" name="订单审核" templatePath="shop/sms/review_order.ftl"/>
-	<templateConfig id="paymentOrderSms" type="sms" name="订单收款" templatePath="shop/sms/payment_order.ftl"/>
-	<templateConfig id="refundsOrderSms" type="sms" name="订单退款" templatePath="shop/sms/refunds_order.ftl"/>
-	<templateConfig id="shippingOrderSms" type="sms" name="订单发货" templatePath="shop/sms/shipping_order.ftl"/>
-	<templateConfig id="returnsOrderSms" type="sms" name="订单退货" templatePath="shop/sms/returns_order.ftl"/>
-	<templateConfig id="receiveOrderSms" type="sms" name="订单收货" templatePath="shop/sms/receive_order.ftl"/>
-	<templateConfig id="completeOrderSms" type="sms" name="订单完成" templatePath="shop/sms/complete_order.ftl"/>
-	<templateConfig id="failOrderSms" type="sms" name="订单失败" templatePath="shop/sms/fail_order.ftl"/>
-	<templateConfig id="registerBusinessSms" type="sms" name="商家注册" templatePath="shop/sms/register_business.ftl"/>
-	<templateConfig id="approvalStoreSms" type="sms" name="店铺审核成功" templatePath="shop/sms/approval_store.ftl"/>
-	<templateConfig id="failStoreSms" type="sms" name="店铺审核失败" templatePath="shop/sms/fail_store.ftl"/>
+
+  <logConfig operation="系统设置" urlPattern="/api/setting/edit" />
+  <logConfig operation="用户列表" urlPattern="/api/admin/list" />
 </setting>

@@ -68,4 +68,6 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	String createCardNo();
 
+	Admin getCurrent();
+
 }

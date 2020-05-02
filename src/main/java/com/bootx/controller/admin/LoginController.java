@@ -6,6 +6,7 @@ import com.bootx.security.UserAuthenticationToken;
 import com.bootx.service.AdminService;
 import com.bootx.service.RoleService;
 import com.bootx.service.UserService;
+import com.bootx.util.JWTUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ import java.util.Map;
 
 /**
  * Controller - 登陆
- * 
+ *
  * @author 夏黎
  * @version 1.0
  */
@@ -52,6 +53,7 @@ public class LoginController extends BaseController {
 		Admin admin = adminService.findByUsername(username);
 		if(admin==null){
 			admin = new Admin();
+			admin.setCardNo(adminService.createCardNo());
 			admin.setLockDate(null);
 			admin.setIsLocked(false);
 			admin.setEmail(username+"@qq.com");
@@ -89,6 +91,11 @@ public class LoginController extends BaseController {
 		data.put("user",user);
 		data.put("currentAuthority","admin");
 		userService.login(new UserAuthenticationToken(Admin.class, username, password, false, request.getRemoteAddr()));
+		// 登陆成功之后，把相关信息加密到token里面
+    Map<String,Object> tokenMap = new HashMap<>();
+    tokenMap.put("id",admin.getId());
+    tokenMap.put("username",admin.getUsername());
+    data.put("token", JWTUtils.create(admin.getId()+"",tokenMap));
 		return data;
 	}
 }

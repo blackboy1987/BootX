@@ -4,6 +4,7 @@ import com.bootx.audit.AuditLogMethodArgumentResolver;
 import com.bootx.entity.Admin;
 import com.bootx.interceptor.AdminLoginInterceptor;
 import com.bootx.interceptor.CorsInterceptor;
+import com.bootx.interceptor.LogInterceptor;
 import com.bootx.security.CurrentUserHandlerInterceptor;
 import com.bootx.security.CurrentUserMethodArgumentResolver;
 import org.springframework.context.annotation.Bean;
@@ -31,17 +32,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return adminLoginInterceptor;
     }
 
+  @Bean
+  public LogInterceptor logInterceptor() {
+    LogInterceptor logInterceptor = new LogInterceptor();
+    return logInterceptor;
+  }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(corsInterceptor())
                 .addPathPatterns("/**");
+      registry.addInterceptor(logInterceptor())
+        .addPathPatterns("/**");
 
         registry.addInterceptor(adminLoginInterceptor())
-                .addPathPatterns("/admin/api/**")
-                .excludePathPatterns("/admin/api/login","/admin/api/logout");
+                .addPathPatterns("/api/**")
+                .excludePathPatterns("/api/login","/api/logout","/api/setting/edit");
 
         registry.addInterceptor(currentUserHandlerInterceptor())
-                .addPathPatterns("/admin/api/**");
+                .addPathPatterns("/api/**");
 
     }
 

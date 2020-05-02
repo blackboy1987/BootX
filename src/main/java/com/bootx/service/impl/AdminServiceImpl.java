@@ -7,7 +7,11 @@ import com.bootx.common.Setting;
 import com.bootx.dao.AdminDao;
 import com.bootx.entity.*;
 import com.bootx.service.AdminService;
+import com.bootx.util.JWTUtils;
 import com.bootx.util.SystemUtils;
+import com.bootx.util.WebUtils;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -144,6 +149,9 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
 	@Override
 	public String createCardNo(){
 	  Long max = jdbcTemplate.queryForObject("select max(CAST(card_no AS SIGNED )) from bootx_admin",Long.class);
+	  if(max==null){
+	    max = 0L;
+    }
 	  return createCardNo(max+1);
   }
 
@@ -158,5 +166,16 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
       }
     }
     return result.toString();
+  }
+
+  @Override
+  public Admin getCurrent() {
+    HttpServletRequest request = WebUtils.getRequest();
+    try {
+      Claims claims = JWTUtils.parseToken(request.getHeader("Authorization"));
+      return find(Long.valueOf(claims.getId()));
+    }catch (Exception e){
+      return null;
+    }
   }
 }

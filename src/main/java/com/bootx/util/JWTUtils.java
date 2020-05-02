@@ -6,13 +6,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class JWTUtils {
 
     public static String create(String id, Map<String,Object> map){
         long now = System.currentTimeMillis();//当前时间
-        long exp = now + 1000*60*60*24*365;//过期时间为1分钟
+        long exp = now + 1000*60*60*24*365;//过期时间为1年
         JwtBuilder builder= Jwts.builder().setId(id)
                 .setSubject("小白")
                 .setIssuedAt(new Date())//用于设置签发时间

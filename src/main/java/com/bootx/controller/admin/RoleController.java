@@ -121,19 +121,24 @@ public class RoleController extends BaseController {
     Map<String,Object> map = new HashMap<>();
     List<Menu> menus = menuService.findRoots();
     List<String> permissionIds = new ArrayList<>();
+    List<Long> menuList = new ArrayList<>();
     Role role = roleService.find(roleId);
     if(role!=null){
       for (Permission permission:role.getPermissions()) {
         permissionIds.add(permission.getMenuId()+"_"+permission.getId()+"_"+permission.getType());
       }
+      for(Menu menu : role.getMenus()){
+        menuList.add(menu.getId());
+      }
     }
     map.put("menuTree",menus);
+    map.put("menuList",menuList);
     map.put("permissionIds",permissionIds);
     return map;
   }
 
   @PostMapping("/update_permission")
-  public Message updatePermission(Long roleId,String[] buttonList,String[] dataList,String [] interfaceList){
+  public Message updatePermission(Long roleId,String[] buttonList,String[] dataList,String [] interfaceList,Long[] menuList){
     List<Long> permissionIds = new ArrayList<>();
     Role role = roleService.find(roleId);
     if(role==null){
@@ -168,6 +173,7 @@ public class RoleController extends BaseController {
     }else{
       role.setPermissions(new HashSet<>(permissionService.findList(permissionIds.toArray(new Long[permissionIds.size()]))));
     }
+    role.setMenus(new HashSet<>(menuService.findList(menuList)));
     roleService.update(role);
     return Message.success("操作成功");
   }

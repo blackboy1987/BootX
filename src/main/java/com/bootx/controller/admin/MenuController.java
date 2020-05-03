@@ -4,6 +4,7 @@ package com.bootx.controller.admin;
 import com.bootx.common.Message;
 import com.bootx.common.Page;
 import com.bootx.common.Pageable;
+import com.bootx.entity.BaseEntity;
 import com.bootx.entity.Menu;
 import com.bootx.entity.Permission;
 import com.bootx.service.MenuService;
@@ -58,16 +59,11 @@ public class MenuController extends BaseController {
 		if (!isValid(menu)) {
 			return Message.error("参数错误");
 		}
-		if(menu.isNew()){
-			menu.setTreePath(null);
-			menu.setGrade(null);
-			menu.setChildren(null);
-			menuService.save(menu);
-
-			refreshPermission(menu);
-		}else{
-			menuService.update(menu,"children");
-		}
+    menu.setTreePath(null);
+    menu.setGrade(null);
+    menu.setChildren(null);
+    menuService.save(menu);
+    refreshPermission(menu);
 
 		return Message.success("操作成功");
 	}
@@ -131,9 +127,35 @@ public class MenuController extends BaseController {
 	 * 编辑
 	 */
 	@PostMapping("/edit")
+  @JsonView(BaseEntity.EditView.class)
 	public Menu edit(Long id) {
 		return menuService.find(id);
 	}
+
+  /**
+   * 保存
+   */
+  @PostMapping("/update")
+  public Message update(Menu menu, Long parentId) {
+    menu.setParent(menuService.find(parentId));
+    String menuUrl = menu.getUrl();
+    if(StringUtils.startsWith(menuUrl,"/")){
+      menuUrl = menuUrl.substring(1);
+    }
+    if(StringUtils.endsWith(menuUrl,"/")){
+      menuUrl = menuUrl.substring(0,menuUrl.length()-1);
+    }
+    menu.setPermission(menuUrl.replaceAll("/",":"));
+
+    if(menu.getIsEnabled()==null){
+      menu.setIsEnabled(false);
+    }
+    if (!isValid(menu)) {
+      return Message.error("参数错误");
+    }
+    menuService.update(menu,"treePath", "grade", "children","permissions");
+    return Message.success("操作成功");
+  }
 
 	/**
 	 * 列表

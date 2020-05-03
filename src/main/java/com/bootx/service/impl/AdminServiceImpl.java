@@ -178,4 +178,22 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
       return null;
     }
   }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Set<Menu> getMenus(User user) {
+    Assert.notNull(user,"");
+    Assert.isInstanceOf(Admin.class, user);
+
+    Admin admin = adminDao.find(user.getId());
+    Set<Menu> result = new HashSet<>();
+    if (admin != null && admin.getRoles() != null) {
+      for (Role role : admin.getRoles()) {
+        if (role.getMenus() != null) {
+          result.addAll(role.getMenus());
+        }
+      }
+    }
+    return result;
+  }
 }

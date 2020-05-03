@@ -59,6 +59,12 @@ public class Role extends BaseEntity<Long> {
 	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<Permission> permissions = new HashSet<>();
 
+  /**
+   * 菜单权限
+   */
+  @ManyToMany(fetch = FetchType.LAZY)
+  private Set<Menu> menus = new HashSet<>();
+
 	/**
 	 * 管理员
 	 */
@@ -179,7 +185,15 @@ public class Role extends BaseEntity<Long> {
 		this.department = department;
 	}
 
-	@Transient
+  public Set<Menu> getMenus() {
+    return menus;
+  }
+
+  public void setMenus(Set<Menu> menus) {
+    this.menus = menus;
+  }
+
+  @Transient
 	@JsonView({EditView.class})
 	public Long getDepartmentId() {
 		if(department!=null){

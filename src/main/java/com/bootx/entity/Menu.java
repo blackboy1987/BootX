@@ -36,8 +36,14 @@ public class Menu extends OrderedEntity<Long> {
 	@NotEmpty
 	@Length(max = 200)
 	@Column(nullable = false)
-	@JsonView({ListView.class,TreeView.class,PermissionView.class})
+	@JsonView({ListView.class,TreeView.class,PermissionView.class,EditView.class,AuthRoutesView.class})
 	private String name;
+
+  @NotEmpty
+  @Length(max = 200)
+  @Column(nullable = false)
+  @JsonView({ListView.class,EditView.class,AuthRoutesView.class})
+	private String menuKey;
 
 	/**
 	 * 树路径
@@ -57,7 +63,7 @@ public class Menu extends OrderedEntity<Long> {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Menu parent;
 
-	@JsonView({ListView.class})
+	@JsonView({ListView.class,EditView.class})
 	private Boolean isEnabled;
 
 	/**
@@ -65,7 +71,7 @@ public class Menu extends OrderedEntity<Long> {
 	 */
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	@OrderBy("order asc")
-	@JsonView({TreeView.class,PermissionView.class})
+	@JsonView({TreeView.class,PermissionView.class,AuthRoutesView.class})
 	private Set<Menu> children = new HashSet<>();
 
 	/**
@@ -75,11 +81,14 @@ public class Menu extends OrderedEntity<Long> {
   @JsonView({PermissionView.class})
 	private Set<Permission> permissions = new HashSet<>();
 
+  @ManyToMany(mappedBy = "menus",fetch = FetchType.LAZY)
+  private Set<Role> roles = new HashSet<>();
+
 	/**
 	 * 菜单跳转路径
 	 */
 	@NotEmpty
-	@JsonView({ListView.class})
+	@JsonView({ListView.class,EditView.class,AuthRoutesView.class})
 	private String url;
 
 	/**
@@ -89,11 +98,15 @@ public class Menu extends OrderedEntity<Long> {
 	@JsonView({ListView.class})
 	private String permission;
 
-  @JsonView({ListView.class})
+  @JsonView({ListView.class,EditView.class,AuthRoutesView.class})
 	private String icon;
 
-  @JsonView({ListView.class})
+  @JsonView({ListView.class,EditView.class,AuthRoutesView.class})
 	private String target;
+
+
+  @JsonView({ListView.class,EditView.class,AuthRoutesView.class})
+  private String component;
 
 
 	/**
@@ -115,7 +128,15 @@ public class Menu extends OrderedEntity<Long> {
 		this.name = name;
 	}
 
-	/**
+  public String getMenuKey() {
+    return menuKey;
+  }
+
+  public void setMenuKey(String menuKey) {
+    this.menuKey = menuKey;
+  }
+
+  /**
 	 * 获取树路径
 	 *
 	 * @return 树路径
@@ -208,14 +229,13 @@ public class Menu extends OrderedEntity<Long> {
 		return permissions;
 	}
 
-
-	/**
+  /**
 	 * 设置权限
 	 *
 	 * @param permissions
 	 *            权限
 	 */
-	public void setPermissionses(Set<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 
@@ -256,6 +276,14 @@ public class Menu extends OrderedEntity<Long> {
 		this.permission = permission;
 	}
 
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
+
   public String getIcon() {
     return icon;
   }
@@ -270,6 +298,14 @@ public class Menu extends OrderedEntity<Long> {
 
   public void setTarget(String target) {
     this.target = target;
+  }
+
+  public String getComponent() {
+    return component;
+  }
+
+  public void setComponent(String component) {
+    this.component = component;
   }
 
   /**
@@ -319,7 +355,7 @@ public class Menu extends OrderedEntity<Long> {
 	}
 
 	@Transient
-	@JsonView({ListView.class})
+	@JsonView({EditView.class})
 	public Long getParentId(){
 		if(parent!=null){
 			return parent.getId();
@@ -339,4 +375,6 @@ public class Menu extends OrderedEntity<Long> {
 	public interface ListView extends BaseView {}
   public interface PermissionView extends TreeView{}
 	public interface TreeView extends IdView{}
+
+	public interface AuthRoutesView{}
 }

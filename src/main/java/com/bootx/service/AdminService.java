@@ -5,9 +5,12 @@ import com.bootx.common.Page;
 import com.bootx.common.Pageable;
 import com.bootx.entity.Admin;
 import com.bootx.entity.Department;
+import com.bootx.entity.Menu;
+import com.bootx.entity.User;
 import com.bootx.security.AuthenticationProvider;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Service - 管理员
@@ -70,4 +73,5 @@ public interface AdminService extends BaseService<Admin, Long>, AuthenticationPr
 
 	Admin getCurrent();
 
+  Set<Menu> getMenus(User user);
 }

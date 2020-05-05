@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -93,6 +94,11 @@ public class Admin extends User {
 	@NotEmpty
 	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<Role> roles = new HashSet<>();
+
+	@NotNull
+  @JoinColumn(nullable = false)
+  @ManyToOne(fetch = FetchType.LAZY)
+	private Post post;
 
 	/**
 	 * 获取用户名
@@ -216,7 +222,15 @@ public class Admin extends User {
 		this.department = department;
 	}
 
-	/**
+  public Post getPost() {
+    return post;
+  }
+
+  public void setPost(Post post) {
+    this.post = post;
+  }
+
+  /**
 	 * 获取角色
 	 *
 	 * @return 角色
@@ -297,6 +311,24 @@ public class Admin extends User {
 		}
 		return null;
 	}
+
+  @Transient
+  @JsonView({EditView.class})
+  public Long getPostId() {
+    if(post!=null){
+      return post.getId();
+    }
+    return null;
+  }
+
+  @Transient
+  @JsonView({ListView.class})
+  public String getPostName() {
+    if(post!=null){
+      return post.getName();
+    }
+    return null;
+  }
 
 	/**
 	 * 持久化前处理

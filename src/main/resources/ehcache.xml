@@ -16,6 +16,7 @@
     <cache name="word" maxElementsInMemory="1000000" timeToIdleSeconds="3600" timeToLiveSeconds="86400" eternal="false" overflowToDisk="true" />
     <cache name="logConfig" maxElementsInMemory="1000000" timeToIdleSeconds="3600" timeToLiveSeconds="86400" eternal="false" overflowToDisk="true" />
     <cache name="menu" maxElementsInMemory="1000000" timeToIdleSeconds="3600" timeToLiveSeconds="86400" eternal="false" overflowToDisk="true" />
+    <cache name="post" maxElementsInMemory="1000000" timeToIdleSeconds="3600" timeToLiveSeconds="86400" eternal="false" overflowToDisk="true" />
 
 
 

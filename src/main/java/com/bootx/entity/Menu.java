@@ -1,6 +1,7 @@
 
 package com.bootx.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.Length;
@@ -89,6 +90,7 @@ public class Menu extends OrderedEntity<Long> {
 	 */
 	@NotEmpty
 	@JsonView({ListView.class,EditView.class,AuthRoutesView.class})
+  @JsonProperty("path")
 	private String url;
 
 	/**

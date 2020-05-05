@@ -2,10 +2,10 @@
 package com.bootx.controller.admin;
 
 import com.bootx.entity.Admin;
+import com.bootx.entity.Menu;
+import com.bootx.entity.Permission;
 import com.bootx.security.UserAuthenticationToken;
-import com.bootx.service.AdminService;
-import com.bootx.service.RoleService;
-import com.bootx.service.UserService;
+import com.bootx.service.*;
 import com.bootx.util.JWTUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -37,6 +34,9 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private UserService userService;
+
+  @Autowired
+  private PermissionService permissionService;
 
 	/**
 	 * 登录页面
@@ -89,13 +89,35 @@ public class LoginController extends BaseController {
 		user.put("id",admin.getId());
 		user.put("username",admin.getUsername());
 		data.put("user",user);
-		data.put("currentAuthority","admin");
 		userService.login(new UserAuthenticationToken(Admin.class, username, password, false, request.getRemoteAddr()));
 		// 登陆成功之后，把相关信息加密到token里面
+    data.put("currentAuthority",authButtons());
     Map<String,Object> tokenMap = new HashMap<>();
     tokenMap.put("id",admin.getId());
     tokenMap.put("username",admin.getUsername());
     data.put("token", JWTUtils.create(admin.getId()+"",tokenMap));
 		return data;
 	}
+
+  private Set<String> authButtons() {
+    Set<String> buttons = new HashSet<>();
+    // 获取不需要校验的
+    Menu root = new Menu();
+    root.setId(-1L);
+    List<Permission> permissions = permissionService.findList(0,false,true,root);
+    for (Permission permission:permissions) {
+      buttons.addAll(permission.getUrls());
+    }
+    Admin admin = adminService.getCurrent();
+    if(admin!=null){
+      Set<Menu> menus = adminService.getMenus(admin);
+      for (Menu menu:menus) {
+        permissions = permissionService.findList(0,true,true,menu);
+        for (Permission permission:permissions) {
+          buttons.addAll(permission.getUrls());
+        }
+      }
+    }
+    return buttons;
+  }
 }

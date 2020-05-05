@@ -170,10 +170,10 @@ public class AdminController extends BaseController {
 	@PostMapping("/delete")
 	public Message delete(Long[] ids) {
 		if (ids.length >= adminService.count()) {
-			return Message.error("admin.common.deleteAllNotAllowed");
+			return Message.error("参数错误");
 		}
 		adminService.delete(ids);
-		return SUCCESS_MESSAGE;
+		return Message.success("删除成功");
 	}
 
 	/**

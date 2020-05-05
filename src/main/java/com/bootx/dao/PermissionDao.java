@@ -6,6 +6,8 @@ import com.bootx.common.Pageable;
 import com.bootx.entity.Menu;
 import com.bootx.entity.Permission;
 
+import java.util.List;
+
 /**
  * Dao - 权限
  *
@@ -20,5 +22,8 @@ public interface PermissionDao extends BaseDao<Permission, Long> {
 	Boolean exists(String name, Menu menu, Long id);
 
   Page<Permission> findPage(Pageable pageable, Menu menu);
+
+
+  List<Permission> findList(Integer type,Boolean isChecked,Boolean isEnabled, Menu menu);
 
 }

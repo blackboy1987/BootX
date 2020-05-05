@@ -9,9 +9,12 @@ import com.bootx.entity.Permission;
 import com.bootx.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import java.util.List;
 
 @Service
 public class PermissionServiceImpl extends BaseServiceImpl<Permission, Long> implements PermissionService {
@@ -72,5 +75,10 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission, Long> imp
   @Override
   public Page<Permission> findPage(Pageable pageable, Menu menu) {
     return permissionsDao.findPage(pageable,menu);
+  }
+
+  @Override
+  public List<Permission> findList(Integer type,Boolean isChecked,Boolean isEnabled, Menu menu) {
+    return permissionsDao.findList(type,isChecked,isEnabled,menu);
   }
 }

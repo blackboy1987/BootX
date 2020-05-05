@@ -13,6 +13,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Dao - 权限
@@ -57,5 +60,29 @@ public class PermissionDaoImpl extends BaseDaoImpl<Permission, Long> implements 
     }
     criteriaQuery.where(restrictions);
     return super.findPage(criteriaQuery, pageable);
+  }
+
+  @Override
+  public List<Permission> findList(Integer type,Boolean isChecked,Boolean isEnabled, Menu menu) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<Permission> criteriaQuery = criteriaBuilder.createQuery(Permission.class);
+    Root<Permission> root = criteriaQuery.from(Permission.class);
+    criteriaQuery.select(root);
+    Predicate restrictions = criteriaBuilder.conjunction();
+    if(type==null){
+      return Collections.emptyList();
+    }
+    restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("type"), type));
+    if (menu!=null&&menu.getId()>0) {
+      restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("menu"), menu));
+    }
+    if (isChecked!=null) {
+      restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("isChecked"), isChecked));
+    }
+    if (isEnabled!=null) {
+      restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("isEnabled"), isEnabled));
+    }
+    criteriaQuery.where(restrictions);
+    return super.findList(criteriaQuery, null,null,null,null);
   }
 }

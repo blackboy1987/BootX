@@ -34,8 +34,15 @@ public class Permission extends BaseEntity<Long> {
 	@JsonView({ListView.class,Menu.PermissionView.class})
 	private String name;
 
+  @NotNull
+  @Column(nullable = false)
 	@JsonView({ListView.class})
 	private Boolean isEnabled;
+
+  @NotNull
+  @Column(nullable = false)
+  @JsonView({ListView.class})
+  private Boolean isChecked;
 
 	/**
 	 * 菜单
@@ -72,11 +79,10 @@ public class Permission extends BaseEntity<Long> {
    * 权限类型
    * 0：按钮权限
    * 1：接口权限
-   * 2：数据权限
    */
 	@NotNull
   @Column(nullable = false,columnDefinition = "int(4) default 0")
-  @JsonView({Menu.PermissionView.class})
+  @JsonView({Menu.PermissionView.class,ListView.class})
 	private Integer type;
 
 	@Transient
@@ -110,7 +116,9 @@ public class Permission extends BaseEntity<Long> {
 		this.isEnabled = isEnabled;
 	}
 
-	public Menu getMenu() {
+
+
+  public Menu getMenu() {
 		return menu;
 	}
 
@@ -177,12 +185,12 @@ public class Permission extends BaseEntity<Long> {
 
 	public interface ListView extends BaseView {}
 
-  public Boolean getChecked() {
-    return checked;
+  public Boolean getIsChecked() {
+    return isChecked;
   }
 
-  public void setChecked(Boolean checked) {
-    this.checked = checked;
+  public void setIsChecked(Boolean isChecked) {
+    this.isChecked = isChecked;
   }
 
   /**

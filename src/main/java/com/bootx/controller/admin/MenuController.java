@@ -86,15 +86,6 @@ public class MenuController extends BaseController {
     savePermission(menu,"修改","/update",1);
     // 查看
     savePermission(menu,"查看","/view",1);
-
-    // 添加
-    savePermission(menu,"添加","/add",2);
-    // 删除
-    savePermission(menu,"删除","/delete",2);
-    // 修改
-    savePermission(menu,"修改","/update",2);
-    // 查看
-    savePermission(menu,"查看","/view",2);
   }
 
   private void savePermission(Menu menu,String name,String url2,Integer type){
@@ -104,6 +95,7 @@ public class MenuController extends BaseController {
     permission.setMemo(menu.getName()+permission.getName());
     permission.setMenu(menu);
     permission.setType(type);
+    permission.setIsChecked(false);
     permission.setUrls(new ArrayList<>());
     permission.getUrls().add(menu.getUrl()+url2);
 
@@ -116,7 +108,7 @@ public class MenuController extends BaseController {
       if(StringUtils.endsWith(url1,"/")){
         url1 = url1.substring(0,url1.length()-1);
       }
-      permissions.put(url,url1.replace("/",":")+"_"+permission.getType());
+      permissions.put(url,url1.replace("/",":"));
     }
     permission.setPermissions(permissions);
     permissionService.save(permission);

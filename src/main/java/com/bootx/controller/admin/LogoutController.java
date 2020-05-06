@@ -24,7 +24,6 @@ public class LogoutController extends BaseController {
 	@Autowired
 	private UserService userService;
 
-
 	/**
 	 * 登录页面
 	 */

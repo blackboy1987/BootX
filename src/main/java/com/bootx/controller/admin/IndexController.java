@@ -70,10 +70,15 @@ public class IndexController extends BaseController {
       return data;
     }
     Set<Menu> menus = adminService.getMenus(admin);
+    Set<Menu> menus1 = new HashSet<>();
+    menus1.addAll(menus);
     for (Menu menu:menus) {
-      menus.addAll(menuService.findParents(menu,true,null));
+      List<Menu> parents = menuService.findParents(menu,true,null);
+      if(parents!=null&&parents.size()>0){
+        menus1.addAll(parents);
+      }
     }
-    data.put("menus",buildTree(menus));
+    data.put("menus",buildTree(menus1));
 		return data;
 	}
 

@@ -18,14 +18,6 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-    System.out.println("============"+request.getRequestURL());
-    System.out.println("============"+request.getMethod());
-    Enumeration<String> enumeration = request.getHeaderNames();
-		while (enumeration.hasMoreElements()){
-		  String key = enumeration.nextElement();
-      System.out.println(key);
-    }
-
 
 	  response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");

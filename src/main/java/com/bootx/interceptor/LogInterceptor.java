@@ -45,14 +45,12 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-    System.out.println("================1");
     return true;
   }
 
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
     List<LogConfig> logConfigs = logConfigService.getAll();
 		if (logConfigs != null) {
 			String path = request.getServletPath();
@@ -109,7 +107,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
    */
   @Override
   public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex){
-    System.out.println("==============3");
+    System.out.println("afterCompletion==============3");
   }
 
   /**
@@ -117,7 +115,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
    */
   @Override
   public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler){
-    System.out.println("==============4");
+    System.out.println("afterConcurrentHandlingStarted==============4");
   }
 
 }

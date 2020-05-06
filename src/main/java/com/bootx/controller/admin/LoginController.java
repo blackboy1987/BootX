@@ -38,11 +38,14 @@ public class LoginController extends BaseController {
   @Autowired
   private PermissionService permissionService;
 
+  @Autowired
+  private CaptchaService captchaService;
+
 	/**
 	 * 登录页面
 	 */
 	@PostMapping
-	public Map<String,Object> index(String type,String username, String password,String captcha, String captchaToken, HttpServletRequest request) {
+	public Map<String,Object> index(String type,String username, String password,String captcha, String captchaId, HttpServletRequest request) {
 		Map<String,Object> data = new HashMap<>();
 		data.put("type",type);
 		if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)){
@@ -68,8 +71,6 @@ public class LoginController extends BaseController {
 			adminService.save(admin);
 		}
 
-
-
 		if(admin==null){
 			data.put("code","-1");
 			data.put("status","error");
@@ -82,6 +83,15 @@ public class LoginController extends BaseController {
 			data.put("content","用户名或密码输入错误");
 			return data;
 		}
+
+		// 验证码
+		if(!captchaService.isValid(captchaId,captcha)){
+			data.put("code","-2");
+			data.put("status","error");
+			data.put("content","验证码错误");
+			return data;
+		}
+
 		data.put("code","0");
 		data.put("status","ok");
 		data.put("content","登陆成功");
@@ -91,11 +101,11 @@ public class LoginController extends BaseController {
 		data.put("user",user);
 		userService.login(new UserAuthenticationToken(Admin.class, username, password, false, request.getRemoteAddr()));
 		// 登陆成功之后，把相关信息加密到token里面
-    data.put("currentAuthority",authButtons());
-    Map<String,Object> tokenMap = new HashMap<>();
-    tokenMap.put("id",admin.getId());
-    tokenMap.put("username",admin.getUsername());
-    data.put("token", JWTUtils.create(admin.getId()+"",tokenMap));
+		data.put("currentAuthority",authButtons());
+		Map<String,Object> tokenMap = new HashMap<>();
+		tokenMap.put("id",admin.getId());
+		tokenMap.put("username",admin.getUsername());
+		data.put("token", JWTUtils.create(admin.getId()+"",tokenMap));
 		return data;
 	}
 

@@ -1,6 +1,8 @@
 
 package com.bootx.service.impl;
 
+import com.bootx.common.Page;
+import com.bootx.common.Pageable;
 import com.bootx.dao.WordDao;
 import com.bootx.entity.Word;
 import com.bootx.service.WordService;
@@ -11,6 +13,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,4 +86,8 @@ public class WordServiceImpl extends BaseServiceImpl<Word, Long> implements Word
 		return super.findAll();
 	}
 
+	@Override
+	public Page<Word> findPage(Pageable pageable, String name, Boolean isEnabled, Date beginDate, Date endDate) {
+		return wordDao.findPage(pageable,name,isEnabled,beginDate,endDate);
+	}
 }

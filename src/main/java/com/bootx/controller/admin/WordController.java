@@ -77,8 +77,8 @@ public class WordController extends BaseController {
 	 */
 	@PostMapping("/list")
 	@JsonView(BaseEntity.ListView.class)
-	public Page<Word> list(Pageable pageable,String name,Date beginDate,Date endDate) {
-		return wordService.findPage(pageable);
+	public Page<Word> list(Pageable pageable,String name,Boolean isEnabled,Date beginDate,Date endDate) {
+		return wordService.findPage(pageable,name,isEnabled,beginDate,endDate);
 	}
 
 

@@ -84,8 +84,8 @@ public class RoleController extends BaseController {
 	 */
 	@PostMapping("/list")
 	@JsonView(BaseEntity.ListView.class)
-	public Page<Role> list(Pageable pageable,String name,Date beginDate,Date endDate) {
-		return roleService.findPage(pageable);
+	public Page<Role> list(Pageable pageable, String name,Boolean isEnabled, Date beginDate, Date endDate) {
+		return roleService.findPage(pageable,name,isEnabled,beginDate,endDate);
 	}
 
 

@@ -1,6 +1,7 @@
 
 package com.bootx.controller.common;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.bootx.service.CaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,8 +26,20 @@ import java.awt.image.BufferedImage;
 @RequestMapping("/api/captcha")
 public class CaptchaController {
 
+	@NacosValue(value = "${a}", autoRefreshed = true)
+	private String useLocalCache;
+
 	@Autowired
 	private CaptchaService captchaService;
+
+	/**
+	 * 图片
+	 */
+	@GetMapping(value = "/nacos")
+	public @ResponseBody String nacos() {
+		return useLocalCache;
+	}
+
 
 	/**
 	 * 图片

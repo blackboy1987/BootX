@@ -51,8 +51,10 @@ dependencies {
 
   compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
 
+	// nacos 配置
+	compile group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'
 
-  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {

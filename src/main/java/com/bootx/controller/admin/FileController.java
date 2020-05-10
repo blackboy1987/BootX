@@ -17,12 +17,12 @@ import java.util.Map;
 
 /**
  * Controller - 文件
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminFileController")
-@RequestMapping("/admin/api/file")
+@RequestMapping("/file")
 public class FileController extends BaseController {
 
 	@Autowired

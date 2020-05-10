@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller - 审计日志
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminAuditLogController")
-@RequestMapping("/admin/api/audit_log")
+@RequestMapping("/audit_log")
 public class AuditLogController extends BaseController {
 
 	@Autowired

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  */
 @RestController("adminLocalStorageController")
-@RequestMapping("/api/storage_plugin/local_storage")
+@RequestMapping("/storage_plugin/local_storage")
 public class LocalStorageController extends BaseController {
 
 	@Autowired

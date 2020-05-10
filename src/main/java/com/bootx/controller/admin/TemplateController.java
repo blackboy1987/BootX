@@ -16,12 +16,12 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 /**
  * Controller - 模板
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminTemplateController")
-@RequestMapping("/admin/api/template")
+@RequestMapping("/template")
 public class TemplateController extends BaseController {
 
 	@Autowired

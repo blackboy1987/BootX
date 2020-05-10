@@ -30,7 +30,6 @@ import java.util.*;
  * @version 1.0
  */
 @RestController("adminIndexController")
-@RequestMapping("/api")
 public class IndexController extends BaseController {
 
   @Autowired
@@ -47,6 +46,8 @@ public class IndexController extends BaseController {
    */
   @PostMapping("/currentUser")
   public Map<String,Object> currentUser(@CurrentUser Admin admin) {
+    admin = adminService.getCurrent();
+
     Map<String,Object> data = new HashMap<>();
     data.put("username",admin.getUsername());
     data.put("id",admin.getId());

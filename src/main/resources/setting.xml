@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <setting>
-	<settingConfig name="siteName" value="SHOP++商城"/>
-	<settingConfig name="siteDescription" value="我是网站描述" />
-	<settingConfig name="siteUrl" value="http://localhost:8880/mall"/>
-	<settingConfig name="logo" value="/mall/upload/image/logo.png"/>
-	<settingConfig name="hotSearch" value="苹果,三星,索尼,华为,魅族,佳能,华硕,美的,格力"/>
-	<settingConfig name="address" value="湖南长沙经济技术开发区"/>
-	<settingConfig name="phone" value="800-8888888"/>
-	<settingConfig name="zipCode" value="400000"/>
-	<settingConfig name="email" value="service@shopxx.net"/>
-	<settingConfig name="certtext" value="湘ICP备10000000号"/>
+	<settingConfig name="siteName" value="项目名称"/>
+	<settingConfig name="siteDescription" value="项目描述" />
+	<settingConfig name="siteUrl" value="http://bootx.i-gomall.com"/>
+	<settingConfig name="logo" value=""/>
+	<settingConfig name="hotSearch" value=""/>
+	<settingConfig name="address" value=""/>
+	<settingConfig name="phone" value=""/>
+	<settingConfig name="zipCode" value=""/>
+	<settingConfig name="email" value=""/>
+	<settingConfig name="certtext" value=""/>
 	<settingConfig name="largeProductImageWidth" value="700"/>
 	<settingConfig name="largeProductImageHeight" value="700"/>
 	<settingConfig name="mediumProductImageWidth" value="300"/>
@@ -22,15 +22,15 @@
 	<settingConfig name="defaultThumbnailProductImage" value="/mall/upload/image/default_thumbnail.jpg"/>
 	<settingConfig name="defaultStoreLogo" value="/mall/upload/image/default_store_logo.jpg"/>
 	<settingConfig name="watermarkAlpha" value="50"/>
-	<settingConfig name="watermarkImage" value="/upload/image/watermark.png"/>
+	<settingConfig name="watermarkImage" value=""/>
 	<settingConfig name="watermarkPosition" value="no"/>
 	<settingConfig name="priceScale" value="2"/>
 	<settingConfig name="priceRoundType" value="roundHalfUp"/>
 	<settingConfig name="isShowMarketPrice" value="true"/>
 	<settingConfig name="defaultMarketPriceScale" value="1.2"/>
-	<settingConfig name="allowedRegisterTypes" value="member,business"/>
+	<settingConfig name="allowedRegisterTypes" value="member"/>
 	<settingConfig name="registerPoint" value="0"/>
-	<settingConfig name="captchaTypes" value="memberLogin,memberRegister,businessLogin,businessRegister,adminLogin,review,consultation,forgotPassword,resetPassword,other"/>
+	<settingConfig name="captchaTypes" value=""/>
 	<settingConfig name="maxFailedLoginAttempts" value="5"/>
 	<settingConfig name="passwordLockTime" value="10"/>
 	<settingConfig name="safeKeyExpiryTime" value="1440"/>
@@ -41,12 +41,12 @@
 	<settingConfig name="imageUploadPath" value="/upload/image/${.now?string('yyyy/MM/dd')}/"/>
 	<settingConfig name="mediaUploadPath" value="/upload/media/${.now?string('yyyy/MM/dd')}/"/>
 	<settingConfig name="fileUploadPath" value="/upload/file/${.now?string('yyyy/MM/dd')}/"/>
-	<settingConfig name="smtpHost" value="smtp.shopxx.net"/>
-	<settingConfig name="smtpPort" value="25"/>
-	<settingConfig name="smtpUsername" value="test"/>
-	<settingConfig name="smtpPassword" value="test"/>
+	<settingConfig name="smtpHost" value=""/>
+	<settingConfig name="smtpPort" value=""/>
+	<settingConfig name="smtpUsername" value=""/>
+	<settingConfig name="smtpPassword" value=""/>
 	<settingConfig name="smtpSSLEnabled" value="false"/>
-	<settingConfig name="smtpFromMail" value="test@shopxx.net"/>
+	<settingConfig name="smtpFromMail" value=""/>
 	<settingConfig name="currencySign" value="￥"/>
 	<settingConfig name="currencyUnit" value="元"/>
 	<settingConfig name="stockAlertCount" value="5"/>
@@ -74,6 +74,6 @@
 	<settingConfig name="defaultPassword" value="123456"/>
   <settingConfig name="codeNoLength" value="6"/>
 
-  <logConfig operation="系统设置" urlPattern="/api/setting/edit" />
-  <logConfig operation="用户列表" urlPattern="/api/admin/list" />
+  <logConfig operation="系统设置" urlPattern="/setting/edit" />
+  <logConfig operation="用户列表" urlPattern="/admin/list" />
 </setting>

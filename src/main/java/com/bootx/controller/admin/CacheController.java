@@ -12,12 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 缓存
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminCacheController")
-@RequestMapping("/admin/api/cache")
+@RequestMapping("/cache")
 public class CacheController extends BaseController {
 
 	@Autowired

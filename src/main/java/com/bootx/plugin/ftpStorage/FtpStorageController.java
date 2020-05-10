@@ -26,7 +26,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController("adminFtpStorageController")
-@RequestMapping("/api/storage_plugin/ftp_storage")
+@RequestMapping("/storage_plugin/ftp_storage")
 public class FtpStorageController extends BaseController {
 
 	@Autowired

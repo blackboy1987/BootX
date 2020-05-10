@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/api/log")
+@RequestMapping("/log")
 public class LogController extends BaseController {
 
 	@Resource

@@ -17,12 +17,12 @@ import java.util.Map;
 
 /**
  * Controller - 阿里云存储
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
 @RestController("adminOssStorageController")
-@RequestMapping("/api/storage_plugin/oss_storage")
+@RequestMapping("/storage_plugin/oss_storage")
 public class OssStorageController extends BaseController {
 
 	@Autowired

@@ -18,7 +18,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController("adminLogoutController")
-@RequestMapping("/api/logout")
+@RequestMapping("/logout")
 public class LogoutController extends BaseController {
 
 	@Autowired

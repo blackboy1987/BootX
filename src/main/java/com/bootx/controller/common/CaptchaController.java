@@ -23,7 +23,7 @@ import java.awt.image.BufferedImage;
  * @version 1.0
  */
 @Controller("commonCaptchaController")
-@RequestMapping("/api/captcha")
+@RequestMapping("/captcha")
 public class CaptchaController {
 
 	@Autowired

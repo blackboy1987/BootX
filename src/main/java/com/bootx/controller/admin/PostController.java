@@ -23,7 +23,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController("adminPostController")
-@RequestMapping("/api/post")
+@RequestMapping("/post")
 public class PostController extends BaseController {
 
 	@Autowired

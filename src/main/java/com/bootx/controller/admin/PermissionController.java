@@ -30,7 +30,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController("adminPermissionController")
-@RequestMapping("/api/permission")
+@RequestMapping("/permission")
 public class PermissionController extends BaseController {
 
 	@Autowired

@@ -21,7 +21,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController("adminDepartmentController")
-@RequestMapping("/api/department")
+@RequestMapping("/department")
 public class DepartmentController extends BaseController {
 
 	@Autowired

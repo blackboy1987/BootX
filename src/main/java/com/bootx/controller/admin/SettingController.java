@@ -24,7 +24,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController("adminstingController")
-@RequestMapping("/api/setting")
+@RequestMapping("/setting")
 public class SettingController extends BaseController {
 
 	@Autowired

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -24,22 +25,24 @@ import java.util.*;
  * @version 1.0
  */
 @RestController("adminLoginController")
-@RequestMapping("/api/login")
+@RequestMapping("/login")
 public class LoginController extends BaseController {
 
-	@Autowired
+	@Resource
 	private AdminService adminService;
-	@Autowired
+	@Resource
 	private RoleService roleService;
 
-	@Autowired
+	@Resource
 	private UserService userService;
 
-  @Autowired
+  @Resource
   private PermissionService permissionService;
 
-  @Autowired
+  @Resource
   private CaptchaService captchaService;
+  @Resource
+  private PostService postService;
 
 	/**
 	 * 登录页面
@@ -65,6 +68,7 @@ public class LoginController extends BaseController {
 			admin.setRoles(new HashSet<>(roleService.findAll()));
 			admin.setUsername(username);
 			admin.setName(username);
+			admin.setPost(postService.find(1L));
 			admin.setLastLoginDate(new Date());
 			admin.setLastLoginIp(request.getRemoteAddr());
 			admin.setIsEnabled(true);

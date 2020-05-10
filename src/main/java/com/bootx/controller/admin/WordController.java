@@ -25,7 +25,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/api/word")
+@RequestMapping("/word")
 public class WordController extends BaseController {
 
 	@Autowired

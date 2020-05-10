@@ -12,12 +12,12 @@ import java.util.List;
 
 /**
  * Controller - 存储插件
- * 
+ *
  * @author IGOMALL  Team
  * @version 1.0
  */
 @RestController("adminStoragePluginController")
-@RequestMapping("/api/storage_plugin")
+@RequestMapping("/storage_plugin")
 public class StoragePluginController extends BaseController {
 
 	@Autowired

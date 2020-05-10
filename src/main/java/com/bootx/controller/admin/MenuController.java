@@ -29,7 +29,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController("adminMenuController")
-@RequestMapping("/api/menu")
+@RequestMapping("/menu")
 public class MenuController extends BaseController {
 
 	@Autowired

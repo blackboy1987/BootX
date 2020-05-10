@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Controller - 验证码
- * 
+ *
  * @author blackboy
  * @version 1.0
  */
@@ -26,20 +26,8 @@ import java.awt.image.BufferedImage;
 @RequestMapping("/api/captcha")
 public class CaptchaController {
 
-	@NacosValue(value = "${a}", autoRefreshed = true)
-	private String useLocalCache;
-
 	@Autowired
 	private CaptchaService captchaService;
-
-	/**
-	 * 图片
-	 */
-	@GetMapping(value = "/nacos")
-	public @ResponseBody String nacos() {
-		return useLocalCache;
-	}
-
 
 	/**
 	 * 图片

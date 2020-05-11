@@ -2,6 +2,7 @@
 package com.bootx.controller.admin;
 
 import com.bootx.common.Setting;
+import com.bootx.service.*;
 import com.bootx.util.SystemUtils;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.bootx.common.Message;
@@ -9,14 +10,12 @@ import com.bootx.common.Page;
 import com.bootx.common.Pageable;
 import com.bootx.entity.Admin;
 import com.bootx.entity.BaseEntity;
-import com.bootx.service.AdminService;
-import com.bootx.service.DepartmentService;
-import com.bootx.service.RoleService;
-import com.bootx.service.UserService;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,6 +39,8 @@ public class AdminController extends BaseController {
 	private RoleService roleService;
 	@Autowired
 	private DepartmentService departmentService;
+	@Resource
+	private PostService postService;
 
   /**
    * 添加
@@ -72,7 +73,9 @@ public class AdminController extends BaseController {
 	 * 保存
 	 */
 	@PostMapping("/save")
-	public Message save(Admin admin, Long[] roleIds,Long departmentId) {
+	public Message save(Admin admin, Long[] roleIds,Long departmentId,Long postId) {
+    Setting setting = SystemUtils.getSetting();
+	  admin.setPost(postService.find(postId));
 		admin.setRoles(new HashSet<>(roleService.findList(roleIds)));
 		admin.setDepartment(departmentService.find(departmentId));
 		if(StringUtils.isEmpty(admin.getCardNo())){
@@ -82,7 +85,7 @@ public class AdminController extends BaseController {
       admin.setIsEnabled(true);
     }
     admin.setEmail(admin.getUsername()+"@qq.com");
-    admin.setPassword("123456");
+    admin.setPassword(setting.getDefaultPassword());
 
     Map<String,String> validResults = isValid1(admin, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
@@ -117,7 +120,8 @@ public class AdminController extends BaseController {
    * 更新
    */
   @PostMapping("/update")
-  public Message update(Admin admin, Long[] roleIds,Long departmentId, Boolean isLocked) {
+  public Message update(Admin admin, Long[] roleIds,Long departmentId, Boolean isLocked,Long postId) {
+    admin.setPost(postService.find(postId));
     admin.setDepartment(departmentService.find(departmentId));
     if(admin.getIsEnabled()==null){
       admin.setIsEnabled(false);

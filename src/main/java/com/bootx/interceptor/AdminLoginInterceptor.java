@@ -7,6 +7,7 @@ import com.bootx.service.UserService;
 import com.bootx.util.JWTUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +23,20 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
   @Autowired
   private AdminService adminService;
 
+  @Autowired
+  private RedisTemplate<String,String> redisTemplate;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-		Admin admin = adminService.getCurrent();
+    System.out.println(request.getRequestURI());
+
+	  Admin admin = adminService.getCurrent();
     try{
       Claims claims = JWTUtils.parseToken(request.getHeader("Authorization"));
+      String token = redisTemplate.opsForValue().get(claims.getId());
+      System.out.println(token);
+      System.out.println(request.getHeader("Authorization"));
+
       if(admin==null){
         admin = adminService.find(Long.valueOf(claims.getId()));
       }

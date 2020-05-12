@@ -1,10 +1,8 @@
 
 package com.bootx.controller.admin;
 
-import com.bootx.entity.Admin;
-import com.bootx.entity.Menu;
-import com.bootx.entity.Permission;
-import com.bootx.entity.User;
+import com.bootx.common.Message;
+import com.bootx.entity.*;
 import com.bootx.security.CurrentUser;
 import com.bootx.service.AdminService;
 import com.bootx.service.MenuService;
@@ -15,11 +13,14 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 
@@ -41,14 +42,23 @@ public class IndexController extends BaseController {
   @Autowired
   private PermissionService permissionService;
 
+  @Resource
+  private RedisTemplate redisTemplate;
+
   /**
    * 当前登陆信息
    */
   @PostMapping("/currentUser")
-  public Map<String,Object> currentUser(@CurrentUser Admin admin) {
-    admin = adminService.getCurrent();
-
+  public Map<String,Object> currentUser(@CurrentUser Admin admin, HttpServletResponse response) {
     Map<String,Object> data = new HashMap<>();
+    admin = adminService.getCurrent();
+    if(admin==null){
+      response.setContentType("application/json");
+      data.put("message", Message.error("请先登录"));
+      response.setStatus(999);
+      return data;
+    }
+
     data.put("username",admin.getUsername());
     data.put("id",admin.getId());
     data.put("departmentName",admin.getDepartmentName());
@@ -70,7 +80,20 @@ public class IndexController extends BaseController {
       data.put("menus",Collections.emptyList());
       return data;
     }
-    Set<Menu> menus = adminService.getMenus(admin);
+    Boolean isSystem = false;
+    for (Role role:admin.getRoles()) {
+      if(role.getIsSystem()){
+        isSystem = true;
+        break;
+      }
+    }
+    Set<Menu> menus = null;
+    if(isSystem){
+      menus = adminService.getMenus(admin);
+    }else{
+      menus = new HashSet<>(menuService.findRoots());
+    }
+
     Set<Menu> menus1 = new HashSet<>();
     menus1.addAll(menus);
     for (Menu menu:menus) {

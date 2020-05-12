@@ -9,6 +9,7 @@ import com.bootx.service.*;
 import com.bootx.util.JWTUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,9 @@ public class LoginController extends BaseController {
   private CaptchaService captchaService;
   @Resource
   private PostService postService;
+
+  @Resource
+  private RedisTemplate<String,String> redisTemplate;
 
 	/**
 	 * 登录页面
@@ -109,7 +113,11 @@ public class LoginController extends BaseController {
 		Map<String,Object> tokenMap = new HashMap<>();
 		tokenMap.put("id",admin.getId());
 		tokenMap.put("username",admin.getUsername());
-		data.put("token", JWTUtils.create(admin.getId()+"",tokenMap));
+		String token = JWTUtils.create(admin.getId()+"",tokenMap);
+    System.out.println("login:"+token);
+    redisTemplate.opsForValue().set(admin.getId()+"",token);
+    System.out.println("login11111:"+redisTemplate.opsForValue().get(admin.getId()+""));
+		data.put("token", token);
 		return data;
 	}
 

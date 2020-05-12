@@ -15,10 +15,12 @@ import io.jsonwebtoken.JwtBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashSet;
@@ -35,6 +37,9 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
 
 	@Autowired
 	private AdminDao adminDao;
+
+  @Resource
+  private RedisTemplate<String,String> redisTemplate;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -172,8 +177,13 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
   public Admin getCurrent() {
     HttpServletRequest request = WebUtils.getRequest();
     try {
-      Claims claims = JWTUtils.parseToken(request.getHeader("Authorization"));
-      return find(Long.valueOf(claims.getId()));
+      String authorizationToken = request.getHeader("Authorization");
+      Claims claims = JWTUtils.parseToken(authorizationToken);
+      String token = redisTemplate.opsForValue().get(claims.getId());
+      if(StringUtils.equals(token,authorizationToken)){
+        return find(Long.valueOf(claims.getId()));
+      }
+      return null;
     }catch (Exception e){
       return null;
     }

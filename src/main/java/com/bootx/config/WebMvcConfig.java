@@ -40,17 +40,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-       // registry.addInterceptor(corsInterceptor()).addPathPatterns("/**");
+       registry.addInterceptor(corsInterceptor()).addPathPatterns("/**");
       registry.addInterceptor(logInterceptor())
         .addPathPatterns("/**");
 
         registry.addInterceptor(adminLoginInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login","/logout","/setting/edit","/captcha/**","/auth_routes");
+                .excludePathPatterns("/login","/logout","/setting/edit","/captcha/**","/auth_routes","/register");
 
         registry.addInterceptor(currentUserHandlerInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/auth_routes");
+                .excludePathPatterns("/auth_routes","/register");
 
     }
 

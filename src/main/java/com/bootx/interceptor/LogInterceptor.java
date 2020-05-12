@@ -107,7 +107,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
    */
   @Override
   public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex){
-    System.out.println("afterCompletion==============3");
+    //System.out.println("afterCompletion==============3");
   }
 
   /**

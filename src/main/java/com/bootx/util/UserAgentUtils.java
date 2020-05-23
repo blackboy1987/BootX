@@ -4,7 +4,6 @@ import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
-import org.omg.CORBA.OBJECT_NOT_EXIST;
 
 import java.util.HashMap;
 import java.util.Map;

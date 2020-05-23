@@ -38,9 +38,6 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
 	@Autowired
 	private AdminDao adminDao;
 
-  @Resource
-  private RedisTemplate<String,String> redisTemplate;
-
 	@Override
 	@Transactional(readOnly = true)
 	public Admin getUser(Object principal) {
@@ -179,11 +176,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
     try {
       String authorizationToken = request.getHeader("Authorization");
       Claims claims = JWTUtils.parseToken(authorizationToken);
-      String token = redisTemplate.opsForValue().get(claims.getId());
-      if(StringUtils.equals(token,authorizationToken)){
-        return find(Long.valueOf(claims.getId()));
-      }
-      return null;
+      return find(Long.valueOf(claims.getId()));
     }catch (Exception e){
       return null;
     }

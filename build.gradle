@@ -16,10 +16,10 @@ repositories {
 
 dependencies {
 	compile fileTree(dir:'lib',includes:['*jar'])
-  compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
-  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
-  compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
-  compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+	  compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
+	  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+	  compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+	  compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
 	compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
 	compile group: 'commons-io', name: 'commons-io', version: '2.6'
 	compile group: 'org.apache.poi', name: 'poi', version: '4.1.2'
@@ -47,9 +47,12 @@ dependencies {
   compile group: 'jaxen', name: 'jaxen', version: '1.2.0'
 
 
-  compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
+	compile group: 'org.apache.commons', name: 'commons-pool2', version: '2.8.0'
 
-  compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
+
+	compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
 
 	// nacos 配置
 	compile group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'

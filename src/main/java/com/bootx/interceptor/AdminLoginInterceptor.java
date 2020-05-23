@@ -3,7 +3,6 @@ package com.bootx.interceptor;
 import com.bootx.common.Message;
 import com.bootx.entity.Admin;
 import com.bootx.service.AdminService;
-import com.bootx.service.UserService;
 import com.bootx.util.JWTUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ import java.util.Map;
 
 public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
 
-	@Autowired
-	private UserService userService;
-
   @Autowired
   private AdminService adminService;
 
@@ -29,7 +25,6 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
     System.out.println(request.getRequestURI());
-
 	  Admin admin = adminService.getCurrent();
     try{
       Claims claims = JWTUtils.parseToken(request.getHeader("Authorization"));

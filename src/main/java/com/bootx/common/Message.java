@@ -2,7 +2,6 @@
 package com.bootx.common;
 
 import com.bootx.entity.BaseEntity;
-import com.bootx.util.SpringUtils;
 import com.fasterxml.jackson.annotation.JsonView;
 
 /**
@@ -57,13 +56,11 @@ public class Message {
 	 *            状态码
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 */
-	public Message(Integer code, String content,Object data, Object... args) {
+	public Message(Integer code, String content,Object data) {
 		this.code = code;
 		this.data = data;
-		this.content = SpringUtils.getMessage(content, args);
+		this.content = content;
 	}
 
 	/**
@@ -71,12 +68,10 @@ public class Message {
 	 * 
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 * @return 成功消息
 	 */
-	public static Message success(String content, Object... args) {
-		return new Message(0, content, args);
+	public static Message success(String content) {
+		return new Message(0, content);
 	}
 
 	/**
@@ -84,12 +79,10 @@ public class Message {
 	 * 
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 * @return 警告消息
 	 */
-	public static Message warn(String content, Object... args) {
-		return new Message(-2, content, args);
+	public static Message warn(String content) {
+		return new Message(-2, content);
 	}
 
 	/**
@@ -97,12 +90,10 @@ public class Message {
 	 * 
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 * @return 错误消息
 	 */
-	public static Message error(String content, Object... args) {
-		return new Message(-1, content, args);
+	public static Message error(String content) {
+		return new Message(-1, content);
 	}
 
 
@@ -113,7 +104,7 @@ public class Message {
 	 *            内容
 	 * @return 成功消息
 	 */
-	public static Message success1(String content,Object data) {
+	public static Message success(String content,Object data) {
 		return new Message(0, content,data);
 	}
 
@@ -124,7 +115,7 @@ public class Message {
 	 *            内容
 	 * @return 警告消息
 	 */
-	public static Message warn1(String content,Object data) {
+	public static Message warn(String content,Object data) {
 		return new Message(-2, content,data);
 	}
 
@@ -135,8 +126,37 @@ public class Message {
 	 *            内容
 	 * @return 错误消息
 	 */
-	public static Message error1(String content, Object data) {
+	public static Message error(String content,Object data) {
 		return new Message(-1, content,data);
+	}
+
+
+
+	/**
+	 * 返回成功消息
+	 *
+	 * @return 成功消息
+	 */
+	public static Message success(Object data) {
+		return new Message(0, "",data);
+	}
+
+	/**
+	 * 返回警告消息
+	 *
+	 * @return 警告消息
+	 */
+	public static Message warn(Object data) {
+		return new Message(-2, "",data);
+	}
+
+	/**
+	 * 返回错误消息
+	 *
+	 * @return 错误消息
+	 */
+	public static Message error(Object data) {
+		return new Message(-1, "",data);
 	}
 
 
@@ -174,7 +194,7 @@ public class Message {
 	 */
 	@Override
 	public String toString() {
-		return SpringUtils.getMessage(content);
+		return content;
 	}
 
 	public Object getData() {

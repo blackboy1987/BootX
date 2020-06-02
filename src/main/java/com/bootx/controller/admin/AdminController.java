@@ -89,7 +89,7 @@ public class AdminController extends BaseController {
 
     Map<String,String> validResults = isValid1(admin, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
-      return Message.error1("参数错误",validResults);
+      return Message.error("参数错误",validResults);
     }
 
     if (adminService.usernameExists(admin.getUsername())) {
@@ -139,7 +139,7 @@ public class AdminController extends BaseController {
     admin.setRoles(new HashSet<>(roleService.findList(roleIds)));
     Map<String,String> validResults = isValid1(admin);
     if(!validResults.isEmpty()){
-      return Message.error1("参数错误",validResults);
+      return Message.error("参数错误",validResults);
     }
     if (!adminService.emailUnique(admin.getId(), admin.getEmail())) {
       return Message.error("邮箱已存在");

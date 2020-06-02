@@ -41,7 +41,7 @@ public class WordController extends BaseController {
     word.setWordType(wordTypeService.find(wordTypeId));
     Map<String,String> validResults = isValid1(word, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
-      return Message.error1("参数错误",validResults);
+      return Message.error("参数错误",validResults);
     }
     wordService.save(word);
     return Message.success("添加成功");
@@ -65,7 +65,7 @@ public class WordController extends BaseController {
     word.setWordType(wordTypeService.find(wordTypeId));
     Map<String,String> validResults = isValid1(word, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
-      return Message.error1("参数错误",validResults);
+      return Message.error("参数错误",validResults);
     }
     wordService.update(word,"admins");
     return Message.success("添加成功");

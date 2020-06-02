@@ -48,7 +48,7 @@ public class RoleController extends BaseController {
 	  role.setDepartment(departmentService.find(departmentId));
     Map<String,String> validResults = isValid1(role, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
-      return Message.error1("参数错误",validResults);
+      return Message.error("参数错误",validResults);
     }
     roleService.save(role);
     return Message.success("添加成功");
@@ -72,7 +72,7 @@ public class RoleController extends BaseController {
     role.setDepartment(departmentService.find(departmentId));
     Map<String,String> validResults = isValid1(role, BaseEntity.Save.class);
     if(!validResults.isEmpty()){
-      return Message.error1("参数错误",validResults);
+      return Message.error("参数错误",validResults);
     }
     roleService.update(role,"admins");
     return Message.success("添加成功");

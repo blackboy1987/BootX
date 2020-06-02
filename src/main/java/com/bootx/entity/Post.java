@@ -20,101 +20,130 @@ import java.util.Set;
 @Table(name = "bootx_post")
 public class Post extends OrderedEntity<Long> {
 
-	private static final long serialVersionUID = -6614052029623997372L;
+    private static final long serialVersionUID = -6614052029623997372L;
 
-	/**
-	 * 名称
-	 */
-	@NotEmpty
-	@Length(max = 200)
-	@Column(nullable = false)
-	@JsonView({TreeView.class,ListView.class,EditView.class})
-	private String name;
+    /**
+     * 名称
+     */
+    @NotEmpty
+    @Length(max = 200)
+    @Column(nullable = false)
+    @JsonView({TreeView.class, ListView.class, EditView.class})
+    private String name;
 
-	@NotNull
-  @Column(nullable = false)
-  @JsonView({ListView.class,EditView.class})
-	private Integer level;
+    @NotNull
+    @Column(nullable = false)
+    @JsonView({ListView.class, EditView.class})
+    private Integer level;
 
-	/**
-	 * 是否内置
-	 */
-	@Column(nullable = false, updatable = false)
+    /**
+     * 是否内置
+     */
+    @Column(nullable = false, updatable = false)
+    @JsonView({ListView.class, EditView.class})
+    private Boolean isEnabled;
+
+    /**
+     * 描述
+     */
+    @Length(max = 200)
+    @JsonView({ListView.class, EditView.class})
+    private String description;
+
+    /**
+     * 管理员
+     */
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private Set<Admin> admins = new HashSet<>();
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Department department;
+
+
+    /**
+     * 获取名称
+     *
+     * @return 名称
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置名称
+     *
+     * @param name 名称
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    /**
+     * 获取描述
+     *
+     * @return 描述
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * 设置描述
+     *
+     * @param description 描述
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getIsEnabled() {
+        return isEnabled;
+    }
+
+    public void setIsEnabled(Boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
+
+    public Set<Admin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(Set<Admin> admins) {
+        this.admins = admins;
+    }
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	@Transient
+	@JsonView({EditView.class})
+	public Long getDepartmentId(){
+		if(getDepartment()!=null){
+			return getDepartment().getId();
+		}
+		return null;
+	}
+
+	@Transient
 	@JsonView({ListView.class,EditView.class})
-	private Boolean isEnabled;
-
-	/**
-	 * 描述
-	 */
-	@Length(max = 200)
-	@JsonView({ListView.class,EditView.class})
-	private String description;
-
-	/**
-	 * 管理员
-	 */
-	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-	private Set<Admin> admins = new HashSet<>();
-
-	/**
-	 * 获取名称
-	 *
-	 * @return 名称
-	 */
-	public String getName() {
-		return name;
+	public String getDepartmentName(){
+		if(getDepartment()!=null){
+			return getDepartment().getName();
+		}
+		return null;
 	}
-
-	/**
-	 * 设置名称
-	 *
-	 * @param name
-	 *            名称
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-  public Integer getLevel() {
-    return level;
-  }
-
-  public void setLevel(Integer level) {
-    this.level = level;
-  }
-
-  /**
-	 * 获取描述
-	 *
-	 * @return 描述
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * 设置描述
-	 *
-	 * @param description
-	 *            描述
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Boolean getIsEnabled() {
-		return isEnabled;
-	}
-
-	public void setIsEnabled(Boolean isEnabled) {
-		this.isEnabled = isEnabled;
-	}
-
-  public Set<Admin> getAdmins() {
-    return admins;
-  }
-
-  public void setAdmins(Set<Admin> admins) {
-    this.admins = admins;
-  }
 }

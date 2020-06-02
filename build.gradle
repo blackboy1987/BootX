@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.6.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
 }
 
 group = 'com.bootx'
@@ -9,62 +9,64 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-  maven {
-    url  'http://maven.aliyun.com/nexus/content/groups/public/'
-  }
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
 }
 
 dependencies {
-	compile fileTree(dir:'lib',includes:['*jar'])
-	  compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
-	  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
-	  compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
-	  compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
-	compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
-	compile group: 'commons-io', name: 'commons-io', version: '2.6'
-	compile group: 'org.apache.poi', name: 'poi', version: '4.1.2'
-	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
-	compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
-	compile group: 'com.hankcs', name: 'hanlp', version: 'portable-1.7.7'
-	compile group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
-	compile group: 'com.belerweb', name: 'pinyin4j', version: '2.5.1'
-	compile group: 'org.im4java', name: 'im4java', version: '1.4.0'
-	compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.11'
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-	compile group: 'org.bouncycastle', name: 'bcprov-jdk15', version: '1.46'
-	compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.6'
-	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.11.0'
-	compile group: 'org.jxls', name: 'jxls-poi', version: '2.8.1'
-	compile group: 'org.ansj', name: 'ansj_lucene5_plug', version: '5.1.2.1'
-	compile group: 'commons-net', name: 'commons-net', version: '3.6'
-	compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.9.1'
-	compile group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.5.2'
-	compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.5.2'
-	compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.5.2'
-	compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.5.2'
+    compile fileTree(dir: 'lib', includes: ['*jar'])
+    compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.2'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+    compile group: 'com.hankcs', name: 'hanlp', version: 'portable-1.7.7'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+    compile group: 'com.belerweb', name: 'pinyin4j', version: '2.5.1'
+    compile group: 'org.im4java', name: 'im4java', version: '1.4.0'
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.11'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    compile group: 'org.bouncycastle', name: 'bcprov-jdk15', version: '1.46'
+    compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.6'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.11.0'
+    compile group: 'org.jxls', name: 'jxls-poi', version: '2.8.1'
+    compile group: 'org.ansj', name: 'ansj_lucene5_plug', version: '5.1.2.1'
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.9.1'
+    compile group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.5.2'
+    compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.5.2'
+    compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.5.2'
+    compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.5.2'
 
-  compile group: 'jaxen', name: 'jaxen', version: '1.2.0'
-
-
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
-	compile group: 'org.apache.commons', name: 'commons-pool2', version: '2.8.0'
+    compile group: 'jaxen', name: 'jaxen', version: '1.2.0'
 
 
-	compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
+    compile group: 'org.apache.commons', name: 'commons-pool2', version: '2.8.0'
 
-	// nacos 配置
-	compile group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.0.RELEASE'
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+
+    compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.21'
+
+    // nacos 配置
+    compile group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

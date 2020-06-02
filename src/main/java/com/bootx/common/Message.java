@@ -1,9 +1,9 @@
 
 package com.bootx.common;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.bootx.entity.BaseEntity;
 import com.bootx.util.SpringUtils;
+import com.fasterxml.jackson.annotation.JsonView;
 
 /**
  * 消息
@@ -14,31 +14,13 @@ import com.bootx.util.SpringUtils;
 public class Message {
 
 	/**
-	 * 类型
+	 * 状态码。
+	 * 0：成功
+	 * -1： 错误
+	 * -2：警告
 	 */
 	@JsonView({BaseEntity.BaseView.class, BaseEntity.IdView.class})
-	public enum Type {
-
-		/**
-		 * 成功
-		 */
-		success,
-
-		/**
-		 * 警告
-		 */
-		warn,
-
-		/**
-		 * 错误
-		 */
-		error
-	}
-
-	/**
-	 * 类型
-	 */
-	private Type type;
+	private Integer code;
 
 	/**
 	 * 内容
@@ -58,28 +40,28 @@ public class Message {
 	/**
 	 * 构造方法
 	 * 
-	 * @param type
-	 *            类型
+	 * @param code
+	 *            状态码
 	 * @param content
 	 *            内容
 	 */
-	public Message(Type type, String content) {
-		this.type = type;
+	public Message(Integer code, String content) {
+		this.code = code;
 		this.content = content;
 	}
 
 	/**
 	 * 构造方法
 	 * 
-	 * @param type
-	 *            类型
+	 * @param code
+	 *            状态码
 	 * @param content
 	 *            内容
 	 * @param args
 	 *            参数
 	 */
-	public Message(Type type, String content,Object data, Object... args) {
-		this.type = type;
+	public Message(Integer code, String content,Object data, Object... args) {
+		this.code = code;
 		this.data = data;
 		this.content = SpringUtils.getMessage(content, args);
 	}
@@ -94,7 +76,7 @@ public class Message {
 	 * @return 成功消息
 	 */
 	public static Message success(String content, Object... args) {
-		return new Message(Type.success, content, args);
+		return new Message(0, content, args);
 	}
 
 	/**
@@ -107,7 +89,7 @@ public class Message {
 	 * @return 警告消息
 	 */
 	public static Message warn(String content, Object... args) {
-		return new Message(Type.warn, content, args);
+		return new Message(-2, content, args);
 	}
 
 	/**
@@ -120,7 +102,7 @@ public class Message {
 	 * @return 错误消息
 	 */
 	public static Message error(String content, Object... args) {
-		return new Message(Type.error, content, args);
+		return new Message(-1, content, args);
 	}
 
 
@@ -129,12 +111,10 @@ public class Message {
 	 *
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 * @return 成功消息
 	 */
-	public static Message success1(String content,Object data, Object... args) {
-		return new Message(Type.success, content,data, args);
+	public static Message success1(String content,Object data) {
+		return new Message(0, content,data);
 	}
 
 	/**
@@ -142,12 +122,10 @@ public class Message {
 	 *
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 * @return 警告消息
 	 */
-	public static Message warn1(String content,Object data, Object... args) {
-		return new Message(Type.warn, content,data, args);
+	public static Message warn1(String content,Object data) {
+		return new Message(-2, content,data);
 	}
 
 	/**
@@ -155,32 +133,19 @@ public class Message {
 	 *
 	 * @param content
 	 *            内容
-	 * @param args
-	 *            参数
 	 * @return 错误消息
 	 */
-	public static Message error1(String content, Object data,Object... args) {
-		return new Message(Type.error, content,data, args);
+	public static Message error1(String content, Object data) {
+		return new Message(-1, content,data);
 	}
 
 
-	/**
-	 * 获取类型
-	 * 
-	 * @return 类型
-	 */
-	public Type getType() {
-		return type;
+	public Integer getCode() {
+		return code;
 	}
 
-	/**
-	 * 设置类型
-	 * 
-	 * @param type
-	 *            类型
-	 */
-	public void setType(Type type) {
-		this.type = type;
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
 	/**

@@ -2,24 +2,19 @@
 package com.bootx.controller.admin;
 
 import com.bootx.common.Message;
-import com.bootx.entity.*;
+import com.bootx.entity.Admin;
+import com.bootx.entity.Menu;
+import com.bootx.entity.Permission;
+import com.bootx.entity.Role;
 import com.bootx.security.CurrentUser;
 import com.bootx.service.AdminService;
 import com.bootx.service.MenuService;
 import com.bootx.service.PermissionService;
-import com.bootx.service.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.builder.CompareToBuilder;
-import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
@@ -41,9 +36,6 @@ public class IndexController extends BaseController {
 
   @Autowired
   private PermissionService permissionService;
-
-  @Resource
-  private RedisTemplate redisTemplate;
 
   /**
    * 当前登陆信息

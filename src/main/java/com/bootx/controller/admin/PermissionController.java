@@ -141,8 +141,8 @@ public class PermissionController extends BaseController {
 	 */
 	@PostMapping("/list")
 	@JsonView(Permission.ListView.class)
-	public Page<Permission> list(Pageable pageable,Long menuId) {
-		return permissionService.findPage(pageable,menuService.find(menuId));
+	public Message list(Pageable pageable,Long menuId) {
+		return Message.success("查询成功",permissionService.findPage(pageable,menuService.find(menuId)));
 	}
 
 	/**

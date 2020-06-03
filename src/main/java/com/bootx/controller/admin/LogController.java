@@ -17,31 +17,31 @@ import javax.annotation.Resource;
 @RequestMapping("/log")
 public class LogController extends BaseController {
 
-	@Resource
-	private LogService logService;
+    @Resource
+    private LogService logService;
 
-	@PostMapping("/list")
-	public Page<Log> list(Pageable pageable) {
-		return logService.findPage(pageable);
-	}
+    @PostMapping("/list")
+    public Message list(Pageable pageable) {
+        return Message.success(logService.findPage(pageable));
+    }
 
-	@PostMapping("/view")
-	public Log view(Long id) {
-		return logService.find(id);
-	}
+    @PostMapping("/view")
+    public Log view(Long id) {
+        return logService.find(id);
+    }
 
-	@PostMapping("/delete")
-	public @ResponseBody
-  Message delete(Long[] ids) {
-		logService.delete(ids);
-		return SUCCESS_MESSAGE;
-	}
+    @PostMapping("/delete")
+    public @ResponseBody
+    Message delete(Long[] ids) {
+        logService.delete(ids);
+        return SUCCESS_MESSAGE;
+    }
 
-	@PostMapping("/clear")
-	public @ResponseBody
-	Message clear() {
-		logService.clear();
-		return SUCCESS_MESSAGE;
-	}
+    @PostMapping("/clear")
+    public @ResponseBody
+    Message clear() {
+        logService.clear();
+        return SUCCESS_MESSAGE;
+    }
 
 }

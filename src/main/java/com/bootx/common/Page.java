@@ -25,7 +25,7 @@ public class Page<T> implements Serializable {
 	 * 内容
 	 */
 	@JsonView({BaseEntity.BaseView.class, BaseEntity.ListView.class})
-	private final List<T> data = new ArrayList<>();
+	private final List<T> content = new ArrayList<>();
 
 	/**
 	 * 总记录数
@@ -48,16 +48,16 @@ public class Page<T> implements Serializable {
 
 	/**
 	 * 构造方法
-	 *
-	 * @param data
+	 * 
+	 * @param content
 	 *            内容
 	 * @param total
 	 *            总记录数
 	 * @param pageable
 	 *            分页信息
 	 */
-	public Page(List<T> data, long total, Pageable pageable) {
-		this.data.addAll(data);
+	public Page(List<T> content, long total, Pageable pageable) {
+		this.content.addAll(content);
 		this.total = total;
 		this.pageable = pageable;
 	}
@@ -68,8 +68,8 @@ public class Page<T> implements Serializable {
 	 * @return 页码
 	 */
 	@JsonView({BaseEntity.BaseView.class, BaseEntity.ListView.class})
-	public int getCurrent() {
-		return pageable.getCurrent();
+	public int getPageNumber() {
+		return pageable.getPageNumber();
 	}
 
 	/**
@@ -150,8 +150,8 @@ public class Page<T> implements Serializable {
 	 *
 	 * @return 内容
 	 */
-	public List<T> getData() {
-		return data;
+	public List<T> getContent() {
+		return content;
 	}
 
 	/**

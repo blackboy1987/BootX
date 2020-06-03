@@ -36,7 +36,7 @@ public class Pageable implements Serializable {
 	/**
 	 * 页码
 	 */
-	private int current = DEFAULT_PAGE_NUMBER;
+	private int pageNumber = DEFAULT_PAGE_NUMBER;
 
 	/**
 	 * 每页记录数
@@ -82,14 +82,14 @@ public class Pageable implements Serializable {
 	/**
 	 * 构造方法
 	 * 
-	 * @param current
+	 * @param pageNumber
 	 *            页码
 	 * @param pageSize
 	 *            每页记录数
 	 */
-	public Pageable(Integer current, Integer pageSize) {
-		if (current != null && current >= 1) {
-			this.current = current;
+	public Pageable(Integer pageNumber, Integer pageSize) {
+		if (pageNumber != null && pageNumber >= 1) {
+			this.pageNumber = pageNumber;
 		}
 		if (pageSize != null && pageSize >= 1 && pageSize <= MAX_PAGE_SIZE) {
 			this.pageSize = pageSize;
@@ -101,21 +101,21 @@ public class Pageable implements Serializable {
 	 * 
 	 * @return 页码
 	 */
-	public int getCurrent() {
-		return current;
+	public int getPageNumber() {
+		return pageNumber;
 	}
 
 	/**
 	 * 设置页码
 	 * 
-	 * @param current
+	 * @param pageNumber
 	 *            页码
 	 */
-	public void setCurrent(int current) {
-		if (current < 1) {
-			current = DEFAULT_PAGE_NUMBER;
+	public void setPageNumber(int pageNumber) {
+		if (pageNumber < 1) {
+			pageNumber = DEFAULT_PAGE_NUMBER;
 		}
-		this.current = current;
+		this.pageNumber = pageNumber;
 	}
 
 	/**
